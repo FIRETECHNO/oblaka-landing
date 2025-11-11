@@ -18,7 +18,7 @@
 
     <v-col cols="12">
       <v-row>
-        <v-col cols="12" md="6" class="d-flex justify-center align-center pa-6">
+        <v-col cols="12" md="6" class="d-flex justify-center align-center pa-8">
           <v-col cols="12" md="6" class="justify-center align-center">
             <h1>BOOKING</h1>
             <h2>
@@ -37,7 +37,8 @@
           </v-col>
         </v-col>
         <v-col cols="12" md="6" class="d-flex justify-center align-center">
-          <v-img src="/images/white-cocktail.png" class="h-100 d-flex justify-center align-center user-select-none" draggable="false"></v-img>
+          <v-img src="/images/white-cocktail.png" class="h-100 d-flex justify-center align-center user-select-none"
+            draggable="false"></v-img>
         </v-col>
       </v-row>
     </v-col>
