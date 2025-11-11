@@ -41,6 +41,13 @@ export default defineNuxtPlugin((nuxtApp) => {
       global: {
         ripple: false,
       },
+      VRow: {
+        class: 'pa-0 ma-0',
+        noGutters: true, // убирает горизонтальные отступы (gutter)
+      },
+      VCol: {
+        class: 'pa-0 ma-0',
+      },
     },
     ssr: true,
   })
