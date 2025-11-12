@@ -42,6 +42,25 @@
         </v-col>
       </v-row>
     </v-col>
+
+    <v-col cols="12">
+      <v-row class="d-flex justify-center align-center py-8 pa-md-8">
+        <v-img src="/images/reception.png" class="h-100 d-flex justify-center align-center user-select-none" draggable="false"></v-img>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="12" class="d-flex justify-center align-center px-12">
+          <h2>
+            <br>
+            «САЯ»&nbsp;—&nbsp;это тень, в которой вкус раскрывается иначе.<br>
+            <br>
+            Здесь коктейль&nbsp;—&nbsp;это не напиток, а диалог. Мы соединяем классику с ритуалами нового времени: 
+            работаем со светом, ароматами и формой подачи, чтобы каждая встреча оставалась в памяти.<br>
+            <br>
+            Наши коктейли&nbsp;—&nbsp;для тех, кто ценит детали и не готов идти на компромисс.
+          </h2>
+        </v-col>
+      </v-row>
+    </v-col>
   </v-row>
 </template>
 <style scoped lang="scss">
