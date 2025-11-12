@@ -42,6 +42,26 @@
         </v-col>
       </v-row>
     </v-col>
+
+    <v-col cols="12">
+      <v-row class="d-flex justify-center align-center py-8 pa-md-8">
+        <v-img src="/images/reception.png" class="h-100 d-flex justify-center align-center user-select-none reception-img" draggable="false"></v-img>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="12" class="d-flex justify-center align-center pa-8">
+          <v-col cols="12" md="9" class="justify-center align-center">
+            <h1>«САЯ»&nbsp;—&nbsp;это тень, в которой вкус раскрывается иначе.</h1>
+            <h2>
+              <br>
+              Здесь коктейль&nbsp;—&nbsp;это не напиток, а диалог. Мы соединяем классику с ритуалами нового времени: 
+              работаем со светом, ароматами и формой подачи, чтобы каждая встреча оставалась в памяти.<br>
+              <br>
+              Наши коктейли&nbsp;—&nbsp;для тех, кто ценит детали и не готов идти на компромисс.
+            </h2>
+          </v-col>
+        </v-col>
+      </v-row>
+    </v-col>
   </v-row>
 </template>
 <style scoped lang="scss">
@@ -57,5 +77,18 @@
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
   text-underline-offset: 2px !important;
+}
+
+.reception-img {
+    position: relative;
+    overflow: hidden;
+}
+
+.reception-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
 }
 </style>
