@@ -2,64 +2,27 @@
 <template>
   <v-row>
     <v-col class="full-height-block" cols="12">
-      <v-img src=" /images/first-section.png" class="h-100 d-flex justify-center align-center" draggable="false" cover>
-        <v-row class="d-flex justify-center align-center">
-          <v-col cols="12" class="d-flex justify-center align-center mb-16">
-            <v-img src="/icons/logo.png" height="256px" draggable="false" class="user-select-none"></v-img>
-          </v-col>
-          <v-col cols="12" class="d-flex justify-center align-center">
-            <h2>
-              Здесь вкус становится искусством
-            </h2>
-          </v-col>
-        </v-row>
-      </v-img>
+      <!-- <v-img src=" /images/first-section.png" class="h-100 d-flex justify-center align-center" draggable="false" cover> -->
+      <v-row class="d-flex justify-center align-center">
+        <v-col cols="12" class="d-flex justify-center align-center mb-16">
+          <v-img src="/icons/logo.png" height="256px" draggable="false" class="user-select-none"></v-img>
+        </v-col>
+      </v-row>
+      <!-- </v-img> -->
     </v-col>
 
     <v-col cols="12">
-      <v-row>
-        <v-col cols="12" md="6" class="d-flex justify-center align-center pa-8">
-          <v-col cols="12" md="6" class="justify-center align-center">
-            <h1>BOOKING</h1>
-            <h2>
-              <br>
-              Время работы:<br>
-              <br>
-              Пн‑Чт&nbsp;12:00&nbsp;—&nbsp;24:00<br>
-              Пт&nbsp;12:00&nbsp;—&nbsp;2:00<br>
-              Сб&nbsp;14:00&nbsp;—&nbsp;2:00<br>
-              Вс&nbsp;14:00&nbsp;—&nbsp;24:00<br>
-              <br>
-              Вы можете забронировать стол в САЯ:<br>
-              <a href="https://t.me/" class="telegram-link">Telegram</a><br>
-              <a href="tel:+79581413321">✆&nbsp;+7&nbsp;958&nbsp;141‑33‑21</a>
-            </h2>
-          </v-col>
-        </v-col>
-        <v-col cols="12" md="6" class="d-flex justify-center align-center">
-          <v-img src="/images/white-cocktail.png" class="h-100 d-flex justify-center align-center user-select-none"
-            draggable="false"></v-img>
-        </v-col>
-      </v-row>
-    </v-col>
-
-    <v-col cols="12">
-      <v-row class="d-flex justify-center align-center my-16 pa-md-8">
-        <v-img src="/images/reception.png"
-          class="h-100 d-flex justify-center align-center user-select-none reception-img" cover
-          draggable="false"></v-img>
-      </v-row>
       <v-row>
         <v-col cols="12" md="12" class="d-flex justify-center align-center pa-8">
-          <v-col cols="12" md="9" class="justify-center align-center">
-            <h1>«САЯ»&nbsp;—&nbsp;это тень, в которой вкус раскрывается иначе.</h1>
-            <h2>
-              <br>
-              Здесь коктейль&nbsp;—&nbsp;это не напиток, а диалог. Мы соединяем классику с ритуалами нового времени:
-              работаем со светом, ароматами и формой подачи, чтобы каждая встреча оставалась в памяти.<br>
-              <br>
-              Наши коктейли&nbsp;—&nbsp;для тех, кто ценит детали и не готов идти на компромисс.
-            </h2>
+          <v-col cols="12" md="9" class="d-flex justify-center align-center flex-column" >
+            <span>Самый высокий бар-ресторан города с летней террасой</span>
+            <span>Мы предлагаем вам обширную карту коктейльной классики,</span>
+            <span>изысканные блюда средиземноморской, паназиатской и</span>
+            <span>европейской кухни.</span>
+            <span>Ночью вас ждёт самая яркая тусовка в городе.</span>
+            <span>Мы знамениты проведением громких мероприятий, при участии</span>
+            <span>известных гостей, и способностью собрать самую искушенную</span>
+            <span>публику.</span>
           </v-col>
         </v-col>
       </v-row>
@@ -91,7 +54,8 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
+  // background: rgba(0, 0, 0, 0.3);
+  background: #010345;
   pointer-events: none;
 }
 </style>
