@@ -58,6 +58,44 @@
       </v-row>
     </v-col>
   </v-row>
+
+  <v-col class="d-flex flex-column align-space-between full-height-block" cols="12">
+    <v-img src=" /images/booking.png" class="h-100 d-flex justify-center align-center" draggable="false" cover>
+      <v-row class="d-flex justify-space-around align-center full-height-block">
+        <v-col cols="4" class="d-flex justify-center">
+          <v-img src=" /images/bar.png" draggable="false" cover></v-img>
+        </v-col>
+        <v-col cols="4" class="d-flex justify-space-around flex-column h-100">
+          <div>
+            <h2>Забронируйте стол</h2>
+            <h2> в Облаках</h2>
+          </div>
+          <div class="d-flex flex-column align-center">
+            <v-text-field variant="solo-filled" bg-color="primary" base-color="#000000" placeholder="ФИО" rounded class="w-100">
+              <template v-slot:prepend-inner>
+                <div class="mr-8"></div>
+              </template>
+            </v-text-field>
+            <v-text-field variant="solo-filled" bg-color="primary" placeholder="Телефон" rounded class="w-100">
+              <template v-slot:prepend-inner>
+                <div class="mr-8"></div>
+              </template>
+            </v-text-field>
+            <v-text-field variant="solo-filled" bg-color="primary" placeholder="Дата" rounded class="w-100">
+              <template v-slot:prepend-inner>
+                <div class="mr-8"></div>
+              </template>
+            </v-text-field>
+            <v-checkbox label="Согласие на обработку персональных данных" >
+            </v-checkbox>
+            <v-btn base-color="primary" class="rounded-xl w-100" min-height="100">
+              <h2>Отправить заявку</h2>
+            </v-btn>
+          </div>
+        </v-col>
+      </v-row>
+    </v-img>
+  </v-col>
 </template>
 <style scoped lang="scss">
 .full-height-block {

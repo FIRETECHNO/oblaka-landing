@@ -39,3 +39,23 @@ h2 {
   font-size: clamp(1.25rem, 0.7528rem + 1.4205vw, 1.875rem);
   font-weight: 400;
 }
+
+.v-text-field input::placeholder {
+  opacity: 1 !important;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 0.7528rem + 1.4205vw, 1.875rem);
+}
+.v-text-field:hover input::placeholder{
+  opacity: 0.55 !important;
+  transition: opacity .3s ease-in-out;
+}
+.v-text-field input {
+  color: black;
+  opacity: 1;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 0.7528rem + 1.4205vw, 1.875rem);
+}
+.v-checkbox label{
+  font-size: clamp(1rem, 0.7528rem + 1.4205vw, 1.75rem);
+  font-weight: 300;
+}
