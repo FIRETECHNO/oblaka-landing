@@ -60,10 +60,10 @@
   </v-row>
 
   <v-col class="d-flex flex-column align-space-between full-height-block" cols="12">
-    <v-img src=" /images/booking.png" class="h-100 d-flex justify-center align-center" draggable="false" cover>
+    <v-img src="/images/booking.png" class="h-100 d-flex justify-center align-center" draggable="false" cover>
       <v-row class="d-flex justify-space-around align-center full-height-block">
         <v-col cols="4" class="d-flex justify-center">
-          <v-img src=" /images/bar.png" draggable="false" cover></v-img>
+          <v-img src="/images/map.svg" draggable="false" cover></v-img>
         </v-col>
         <v-col cols="4" class="d-flex justify-space-around flex-column h-100">
           <div>
