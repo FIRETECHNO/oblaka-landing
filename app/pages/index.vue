@@ -106,8 +106,8 @@
         Предстоящие события
       </h2>
       <PosterCarousel></PosterCarousel>
-      <v-btn base-color="primary" class="rounded-xl mt-16" min-height="100" max-width="400px">
-        <h2>Забронировать стол</h2>
+      <v-btn base-color="primary" class="rounded-xl mt-16" min-height="100" min-width="400px">
+        <span>Забронировать стол</span>
       </v-btn>
       </v-col>
     </v-row>
