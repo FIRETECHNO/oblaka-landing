@@ -71,7 +71,8 @@
             <h2> в Облаках</h2>
           </div>
           <div class="d-flex flex-column align-center">
-            <v-text-field variant="solo-filled" bg-color="primary" base-color="#000000" placeholder="ФИО" rounded class="w-100">
+            <v-text-field variant="solo-filled" bg-color="primary" base-color="#000000" placeholder="ФИО" rounded
+              class="w-100">
               <template v-slot:prepend-inner>
                 <div class="mr-8"></div>
               </template>
@@ -86,8 +87,7 @@
                 <div class="mr-8"></div>
               </template>
             </v-text-field>
-            <v-checkbox label="Согласие на обработку персональных данных" >
-            </v-checkbox>
+            <v-checkbox label="Согласие на обработку персональных данных"></v-checkbox>
             <v-btn base-color="primary" class="rounded-xl w-100" min-height="100">
               <h2>Отправить заявку</h2>
             </v-btn>
@@ -95,6 +95,32 @@
         </v-col>
       </v-row>
     </v-img>
+  </v-col>
+  <v-col class="d-flex align-space-between full-height-block" cols="12">
+    <v-row class="d-flex justify-center align-center">
+      <v-col cols="8" class="d-flex justify-space-around align-center flex-column h-100">
+      <span class="mt-16 large-text">
+        Афиша
+      </span>
+      <h2>
+        Предстоящие события
+      </h2>
+      <PosterCarousel></PosterCarousel>
+      <v-btn base-color="primary" class="rounded-xl mt-16" min-height="100" max-width="400px">
+        <h2>Забронировать стол</h2>
+      </v-btn>
+      </v-col>
+    </v-row>
+  </v-col>
+    <v-col class="d-flex align-space-between full-height-block" cols="12">
+    <v-row class="d-flex justify-center align-center">
+      <v-col cols="8" class="d-flex justify-space-around align-center flex-column h-100">
+      <h2>
+        Прошедшие события
+      </h2>
+      <PosterCarousel></PosterCarousel>
+      </v-col>
+    </v-row>
   </v-col>
 </template>
 <style scoped lang="scss">
@@ -125,5 +151,9 @@
   // background: rgba(0, 0, 0, 0.3);
   background: #010345;
   pointer-events: none;
+}
+.large-text{
+  font-weight: 800;
+  font-size: clamp(3rem, 0.7528rem + 1.4205vw, 4rem);
 }
 </style>
