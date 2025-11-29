@@ -1,36 +1,83 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted, onBeforeUnmount } from 'vue'
+
+let cleanup: (() => void) | null = null
+
+onMounted(() => {
+  import('gsap').then(({ gsap }) => {
+    import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+      gsap.registerPlugin(ScrollTrigger)
+
+      const section = document.querySelector('.cloud-section')
+      const left = section?.querySelector('.cloud-left')
+      const right = section?.querySelector('.cloud-right')
+
+      if (!section || !left || !right) return
+
+      // Начальное состояние
+      gsap.set([left, right], { width: '100vw' })
+
+      // Анимация с пином
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',       // когда секция касается верха viewport
+          end: '+=1000vh',         // анимация длится 100vh скролла
+          pin: true,              // замирает на экране
+          pinSpacing: true,       // сохраняет пространство (не "прыгает" контент)
+          scrub: true,            // плавная привязка к скроллу
+          invalidateOnRefresh: true,
+        },
+      })
+
+      tl.to([left, right], {
+        width: '40vw',
+        ease: 'none',
+      })
+
+      cleanup = () => {
+        tl.scrollTrigger?.kill()
+        tl.kill()
+      }
+    })
+  })
+})
+
+onBeforeUnmount(() => {
+  if (cleanup) cleanup()
+})
+</script>
+
 <template>
-  <div class="cloud-wrapper"> <img src="/images/clouds.png" alt="left cloud" class="cloud cloud-left" /> <img
-      src="/images/clouds.png" alt="right cloud" class="cloud cloud-right" />
-    <!-- <v-row class="d-flex justify-center align-center"> 
-      <v-col cols="11" sm="10" md="8" lg="6" class="d-flex justify-center align-center flex-column text-center"> 
-        <p> Самый высокий бар-ресторан города с летней террасой Мы предлагаем вам обширную карту коктейльной классики, изысканные блюда 
-          средиземноморской, паназиатской и европейской кухни. </p> 
-        <p> Ночью вас ждёт самая яркая тусовка в городе. Мы знамениты проведением громких мероприятий, при участии известных гостей,
-           и способностью собрать самую искушенную публику. </p> 
-      </v-col> 
-    </v-row> -->
+  <div class="cloud-section">
+    <img src="/images/clouds.png" class="cloud cloud-left" alt="Left cloud" />
+    <img src="/images/clouds.png" class="cloud cloud-right" alt="Right cloud" />
+
+    <!-- Опционально: текст поверх -->
+    <div class="content">
+      <p>Самый высокий бар-ресторан...</p>
+    </div>
   </div>
 </template>
-<style scoped lang="scss">
-p {
-  font-size: clamp(1.375rem, 0.9773rem + 1.1364vw, 1.875rem);
-}
 
-.cloud-wrapper {
+<style scoped lang="scss">
+.cloud-section {
   position: relative;
+  height: 100vh;
+  /* С пином высота не важна — он заменяется пином */
   overflow: hidden;
-  height: 200vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cloud {
   position: absolute;
   top: 0;
-  width: 100vw;
   height: 100vh;
+  width: 100vw;
+  object-fit: cover;
   pointer-events: none;
-  transition: transform 0.05s linear;
-
 }
 
 .cloud-left {
@@ -40,5 +87,14 @@ p {
 
 .cloud-right {
   right: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem;
+  border-radius: 12px;
 }
 </style>
