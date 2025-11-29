@@ -22,7 +22,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: section,
           start: 'top top',       // когда секция касается верха viewport
-          end: '+=1000vh',         // анимация длится 100vh скролла
+          end: '+=1200vh',         // анимация длится 100vh скролла
           pin: true,              // замирает на экране
           pinSpacing: true,       // сохраняет пространство (не "прыгает" контент)
           scrub: true,            // плавная привязка к скроллу
@@ -63,7 +63,7 @@ onBeforeUnmount(() => {
 <style scoped lang="scss">
 .cloud-section {
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 90px);
   /* С пином высота не важна — он заменяется пином */
   overflow: hidden;
   display: flex;
