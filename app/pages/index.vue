@@ -42,20 +42,7 @@
     </v-col>
 
     <v-col cols="12">
-      <v-row>
-        <v-col cols="12" md="12" class="d-flex justify-center align-center pa-8">
-          <v-col cols="12" md="9" class="d-flex justify-center align-center flex-column">
-            <span>Самый высокий бар-ресторан города с летней террасой</span>
-            <span>Мы предлагаем вам обширную карту коктейльной классики,</span>
-            <span>изысканные блюда средиземноморской, паназиатской и</span>
-            <span>европейской кухни.</span>
-            <span>Ночью вас ждёт самая яркая тусовка в городе.</span>
-            <span>Мы знамениты проведением громких мероприятий, при участии</span>
-            <span>известных гостей, и способностью собрать самую искушенную</span>
-            <span>публику.</span>
-          </v-col>
-        </v-col>
-      </v-row>
+      <LandingClouds />
     </v-col>
   </v-row>
 
@@ -99,35 +86,31 @@
   <v-col class="d-flex align-space-between full-height-block" cols="12">
     <v-row class="d-flex justify-center align-center">
       <v-col cols="8" class="d-flex justify-space-around align-center flex-column h-100">
-      <span class="mt-16 large-text">
-        Афиша
-      </span>
-      <h2>
-        Предстоящие события
-      </h2>
-      <PosterCarousel></PosterCarousel>
-      <v-btn base-color="primary" class="rounded-xl mt-16" min-height="100" min-width="400px">
-        <span>Забронировать стол</span>
-      </v-btn>
+        <span class="mt-16 large-text">
+          Афиша
+        </span>
+        <h2>
+          Предстоящие события
+        </h2>
+        <PosterCarousel></PosterCarousel>
+        <v-btn base-color="primary" class="rounded-xl mt-16" min-height="100" min-width="400px">
+          <span>Забронировать стол</span>
+        </v-btn>
       </v-col>
     </v-row>
   </v-col>
-    <v-col class="d-flex align-space-between full-height-block" cols="12">
+  <v-col class="d-flex align-space-between full-height-block" cols="12">
     <v-row class="d-flex justify-center align-center">
       <v-col cols="8" class="d-flex justify-space-around align-center flex-column h-100">
-      <h2>
-        Прошедшие события
-      </h2>
-      <PosterCarousel></PosterCarousel>
+        <h2>
+          Прошедшие события
+        </h2>
+        <PosterCarousel></PosterCarousel>
       </v-col>
     </v-row>
   </v-col>
 </template>
 <style scoped lang="scss">
-.full-height-block {
-  height: calc(100vh - 100px);
-}
-
 .user-select-none {
   user-select: none;
 }
@@ -152,7 +135,8 @@
   background: #010345;
   pointer-events: none;
 }
-.large-text{
+
+.large-text {
   font-weight: 800;
   font-size: clamp(3rem, 0.7528rem + 1.4205vw, 4rem);
 }
