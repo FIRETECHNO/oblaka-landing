@@ -55,7 +55,23 @@ onBeforeUnmount(() => {
 
     <!-- Опционально: текст поверх -->
     <div class="content">
-      <p>Самый высокий бар-ресторан...</p>
+      <v-row class="d-flex justify-center">
+        <v-col cols="10" sm="8" md="7" lg="6">
+          <p>
+            Самый высокий бар-ресторан города с летней террасой
+            Мы предлагаем вам обширную карту коктейльной классики,
+            изысканные блюда средиземноморской, паназиатской и
+            европейской кухни.
+          </p>
+          <br>
+          <p>
+            Ночью вас ждёт самая яркая тусовка в городе.
+            Мы знамениты проведением громких мероприятий, при участии
+            известных гостей, и способностью собрать самую искушенную
+            публику.
+          </p>
+        </v-col>
+      </v-row>
     </div>
   </div>
 </template>
@@ -63,7 +79,7 @@ onBeforeUnmount(() => {
 <style scoped lang="scss">
 .cloud-section {
   position: relative;
-  height: calc(100vh - 90px);
+  height: 100vh;
   /* С пином высота не важна — он заменяется пином */
   overflow: hidden;
   display: flex;
@@ -78,6 +94,7 @@ onBeforeUnmount(() => {
   width: 100vw;
   object-fit: cover;
   pointer-events: none;
+  z-index: 1;
 }
 
 .cloud-left {
@@ -91,10 +108,14 @@ onBeforeUnmount(() => {
 
 .content {
   position: relative;
-  z-index: 2;
+  z-index: 0;
   text-align: center;
-  background: rgba(255, 255, 255, 0.85);
-  padding: 1.5rem;
-  border-radius: 12px;
+  // background: rgba(255, 255, 255, 0.85);
+  // padding: 1.5rem;
+  // border-radius: 12px;
+}
+
+p {
+  font-size: clamp(1.375rem, 0.9773rem + 1.1364vw, 1.875rem);
 }
 </style>
