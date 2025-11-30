@@ -6,10 +6,10 @@ definePageMeta({
 
 const sections: any[] = [
   {
-    title: 'Афиша',
-    description: 'Загрузить новую афишу, запланировать загрузку',
-    icon: 'mdi-post-outline',
-    to: '/admin/poster',
+    title: 'Добавить афишу',
+    description: 'Загрузить новую афишу',
+    icon: 'mdi-upload-circle-outline',
+    to: '/admin/poster/upload',
     color: 'primary'
   },
 ]

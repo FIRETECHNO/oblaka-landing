@@ -10,13 +10,9 @@ let drawer = ref(false);
 let dialog = ref(false);
 
 const breadcrumbTranslations: { [key: string]: string } = {
-  "smm": "Посты в Telegram",
   "upload": "Загрузка",
-  "list": "Список",
   "admin": "Админка",
-  "employers": "Работодатели",
-  "job-reservations": "История бронирования",
-  "invites": "Приглашения"
+  "poster": "Афиши",
 };
 
 const navigationItems: any[] = [
