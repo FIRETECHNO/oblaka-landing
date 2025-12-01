@@ -53,34 +53,34 @@
           <v-img src="/images/map.svg" draggable="false" cover></v-img>
         </v-col>
         <v-col lg="4" md="8">
-        <div class="d-flex justify-space-around flex-column h-100">
-          <div>
-            <h2>Забронируйте стол</h2>
-            <h2> в Облаках</h2>
+          <div class="d-flex justify-space-around flex-column h-100">
+            <div>
+              <h2>Забронируйте стол</h2>
+              <h2> в Облаках</h2>
+            </div>
+            <div class="d-flex flex-column align-center">
+              <v-text-field variant="solo-filled" bg-color="primary" base-color="#000000" placeholder="ФИО" rounded
+                class="w-100">
+                <template v-slot:prepend-inner>
+                  <div class="mr-8"></div>
+                </template>
+              </v-text-field>
+              <v-text-field variant="solo-filled" bg-color="primary" placeholder="Телефон" rounded class="w-100">
+                <template v-slot:prepend-inner>
+                  <div class="mr-8"></div>
+                </template>
+              </v-text-field>
+              <v-text-field variant="solo-filled" bg-color="primary" placeholder="Дата" rounded class="w-100">
+                <template v-slot:prepend-inner>
+                  <div class="mr-8"></div>
+                </template>
+              </v-text-field>
+              <v-checkbox label="Согласие на обработку персональных данных"></v-checkbox>
+              <v-btn base-color="primary" class="rounded-xl w-100" min-height="100">
+                <h2>Отправить заявку</h2>
+              </v-btn>
+            </div>
           </div>
-          <div class="d-flex flex-column align-center">
-            <v-text-field variant="solo-filled" bg-color="primary" base-color="#000000" placeholder="ФИО" rounded
-              class="w-100">
-              <template v-slot:prepend-inner>
-                <div class="mr-8"></div>
-              </template>
-            </v-text-field>
-            <v-text-field variant="solo-filled" bg-color="primary" placeholder="Телефон" rounded class="w-100">
-              <template v-slot:prepend-inner>
-                <div class="mr-8"></div>
-              </template>
-            </v-text-field>
-            <v-text-field variant="solo-filled" bg-color="primary" placeholder="Дата" rounded class="w-100">
-              <template v-slot:prepend-inner>
-                <div class="mr-8"></div>
-              </template>
-            </v-text-field>
-            <v-checkbox label="Согласие на обработку персональных данных"></v-checkbox>
-            <v-btn base-color="primary" class="rounded-xl w-100" min-height="100">
-              <h2>Отправить заявку</h2>
-            </v-btn>
-          </div>
-        </div>
         </v-col>
       </v-row>
     </v-img>
@@ -101,15 +101,12 @@
       </v-col>
     </v-row>
   </v-col>
-  <v-col class="d-flex align-space-between full-height-block" cols="12">
-    <v-row class="d-flex justify-center align-center">
-      <v-col cols="8" class="d-flex justify-space-around align-center flex-column h-100">
-        <h2>
-          Прошедшие события
-        </h2>
-        <PosterCarousel variant="past"></PosterCarousel>
-      </v-col>
-    </v-row>
+  <v-col class="d-flex flex-column align-center" cols="12">
+    <h2>
+      Прошедшие события
+    </h2>
+
+    <LandingAlbums />
   </v-col>
 </template>
 <style scoped lang="scss">
