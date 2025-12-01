@@ -1,54 +1,64 @@
-<script setup>
-// import useImages from '../composables'
-const { getImages } = useImages();
-const links = getImages();
-
-const amount = ref(links.length)
-const animationTime = ref(`${amount.value*10}s`);
-const offset = ref(`${(amount.value-1)*4}px`);
-const width = ref('1000px');
-console.log(offset,width)
+<script setup lang="ts">
+const {
+  initializeCarousel,
+  loadsecondPosters
+} = usePosters()
+let { variant } = defineProps<
+  { variant: string }
+>()
+let carousel = ref()
+let position = ref(0)
+carousel.value = await initializeCarousel(variant) //props needed
+watch(position, async (newValue) => {
+  position.value = newValue
+  carousel.value = await loadsecondPosters(carousel.value, position.value)
+})
 </script>
 <template>
-    <div class="slider">
-        <div class="slide-track">
-            <div class="slide mr-2 ml-2" v-for="image in links">
-                <v-img :src="image" cover></v-img>
-            </div>
-            <div class="slide mr-2 ml-2" v-for="image in links">
-                <v-img :src="image" cover></v-img>
-            </div>
-        </div>
-    </div>
+  <v-carousel cycle :show-arrows="false" interval="5000" hide-delimiters v-model="position">
+    <v-carousel-item transition="cross-scale" reverse-transition="cross-scale">
+      <v-row class="flex-nowrap h-100">
+        <PosterCard :variant="variant" :posters="carousel.firstPosters"></PosterCard>
+      </v-row>
+    </v-carousel-item>
+    <v-carousel-item transition="cross-scale" reverse-transition="cross-scale">
+      <v-row class="flex-nowrap h-100">
+        <PosterCard :variant="variant" :posters="carousel.secondPosters"></PosterCard>
+      </v-row>
+    </v-carousel-item>
+    <v-carousel-item transition="cross-scale" reverse-transition="cross-scale">
+      <v-row class="flex-nowrap h-100">
+        <PosterCard :variant="variant" :posters="carousel.thirdPosters"></PosterCard>
+      </v-row>
+    </v-carousel-item>
+  </v-carousel>
 </template>
-<style scoped lang="scss">
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(calc(-1* v-bind(amount) * v-bind(width) + v-bind(offset)))
-    }
+<style>
+.cross-scale-enter-active {
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.8s;
+  z-index: 2;
 }
 
-.slider {
-    height: 600px;
-    overflow: hidden;
-    // position: relative;
-    // width: calc(v-bind(width) * v-bind(amount));
-    width: 95vw;
+.cross-scale-leave-active {
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
 }
 
-.slide-track {
-    animation: scroll v-bind(animationTime) linear infinite;
-    display: flex;
-    width: calc(2 * v-bind(width) * v-bind(amount) + 2 * v-bind(offset));
+.cross-scale-leave-from {
+  transform: translateX(0);
 }
 
-.slide {
-    // height: 100px;
-    width: v-bind(width);
-    background-color: black;
+.cross-scale-leave-to {
+  transform: translateX(-100%);
+}
+
+.cross-scale-enter-from {
+  transform: translateX(100%);
+}
+
+.cross-scale-enter-to {
+  transform: translateX(0);
 }
 </style>
