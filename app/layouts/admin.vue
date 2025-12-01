@@ -13,6 +13,7 @@ const breadcrumbTranslations: { [key: string]: string } = {
   "upload": "Загрузка",
   "admin": "Админка",
   "poster": "Афиши",
+  "album": "Альбом"
 };
 
 const navigationItems: any[] = [

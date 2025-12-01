@@ -6,17 +6,10 @@ definePageMeta({
 
 const sections: any[] = [
   {
-    title: 'Афиша',
-    description: 'Загрузить новую афишу, запланировать загрузку',
-    icon: 'mdi-post-outline',
-    to: '/admin/poster',
-    color: 'primary'
-  },
-  {
-    title: 'Альбомы',
-    description: 'Фото с предыдущих мероприятий',
-    icon: 'mdi-image-multiple-outline',
-    to: '/admin/album',
+    title: 'Добавить альбом',
+    description: 'Загрузить новый альбом',
+    icon: 'mdi-upload-circle-outline',
+    to: '/admin/album/upload',
     color: 'primary'
   },
 ]
