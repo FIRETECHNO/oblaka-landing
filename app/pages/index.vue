@@ -49,10 +49,11 @@
   <v-col class="d-flex flex-column align-space-between full-height-block" cols="12">
     <v-img src="/images/booking.png" class="h-100 d-flex justify-center align-center" draggable="false" cover>
       <v-row class="d-flex justify-space-around align-center full-height-block">
-        <v-col cols="4" class="d-flex justify-center">
+        <v-col lg="4" md="8" class="d-flex justify-center">
           <v-img src="/images/map.svg" draggable="false" cover></v-img>
         </v-col>
-        <v-col cols="4" class="d-flex justify-space-around flex-column h-100">
+        <v-col lg="4" md="8">
+        <div class="d-flex justify-space-around flex-column h-100">
           <div>
             <h2>Забронируйте стол</h2>
             <h2> в Облаках</h2>
@@ -79,6 +80,7 @@
               <h2>Отправить заявку</h2>
             </v-btn>
           </div>
+        </div>
         </v-col>
       </v-row>
     </v-img>

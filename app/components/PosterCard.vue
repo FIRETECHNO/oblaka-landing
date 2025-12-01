@@ -7,7 +7,7 @@ let { variant, posters } = defineProps<{
 
 </script>
 <template>
-    <v-col v-for="(poster, index) in posters" :key="index" class="">
+    <v-col v-for="(poster, index) in posters" :key="index" class="card">
 
         <v-img :src="poster.images[0]" contain class="rounded-lg mr-2 ml-2">
             <h2 v-if="variant == 'past'" class="text">{{ poster.label }}</h2>
@@ -17,5 +17,8 @@ let { variant, posters } = defineProps<{
 <style scoped>
 .text{
     text-align: center;
+}
+.card{
+    height:600px
 }
 </style>
