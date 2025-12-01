@@ -63,3 +63,6 @@ h2 {
 .full-height-block {
   min-height: calc(100vh - 100px);
 }
+.full-height-block-strict {
+  height: calc(100vh - 100px);
+}

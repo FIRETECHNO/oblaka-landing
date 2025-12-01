@@ -1,41 +1,50 @@
 <script setup lang="ts"></script>
 <template>
   <v-row>
-    <v-col class="d-flex flex-column align-space-between full-height-block" cols="12">
+    <v-col class="d-flex flex-column align-space-between full-height-block-strict" cols="12">
       <v-img src=" /images/first-section.gif" class="h-100 d-flex justify-center align-center" draggable="false" cover>
-        <v-row class="d-flex justify-start align-center">
-          <v-col cols="4" class="d-flex justify-space-around">
-            <div class="d-flex align-start flex-column w-50">
-              <span>Режим работы:</span>
-              <span>ПТ-СБ – с 23:00 до 6:00</span><br />
-              <span>С 1 декабря – ежедневно</span>
-            </div>
-          </v-col>
-        </v-row>
-        <v-row class="d-flex justify-center align-center">
-          <v-col cols="12" class="d-flex justify-center align-center mb-16">
-            <v-img src="/icons/logo.png" height="415px" draggable="false" class="user-select-none"></v-img>
-          </v-col>
-        </v-row>
-        <v-row class="d-flex justify-space-between align-center">
-          <v-col cols="4" class="d-flex justify-center">
-            <div class="d-flex align-start flex-column w-50">
-              <span>ул. Ленина, 88</span>
-              <span>6 этаж</span>
-              <YaButton />
-            </div>
-          </v-col>
-          <v-col cols="4" class="d-flex justify-center align-center">
-            <v-btn min-width="500" min-height="100" class="rounded-xl">
-              <h2><b>Хочу в облака!</b></h2>
-            </v-btn>
-          </v-col>
-          <v-col cols="4" class="d-flex justify-center">
-            <div class="d-flex align-end flex-column w-50">
-              <span>Бронь столов:</span>
-              <span>288-81-89</span>
-              <span>Telegram</span>
-            </div>
+        <v-row class="d-flex justify-center">
+          <v-col cols="11" md="10" lg="9" xl="8">
+            <v-row class="d-flex justify-start align-center">
+              <v-col cols="12" class="d-flex">
+                <div class="d-flex align-start flex-column w-50">
+                  <span>Режим работы:</span>
+                  <span>ПТ-СБ – с 23:00 до 6:00</span><br />
+                  <span>С 1 декабря – ежедневно</span>
+                </div>
+              </v-col>
+            </v-row>
+            <v-row class="d-flex justify-start align-center">
+              <v-col cols="12" class="d-flex justify-start align-center">
+                <v-img src="/icons/logo.png" draggable="false" class="user-select-none main-logo pa-2"></v-img>
+              </v-col>
+            </v-row>
+            <v-row class="d-flex justify-space-between align-center">
+              <v-col cols="6" md="4" class="d-flex justify-start">
+                <div class="d-flex align-start flex-column w-50 pa-2">
+                  <span>ул. Ленина, 88</span>
+                  <span>6 этаж</span>
+                  <YaButton />
+                </div>
+              </v-col>
+              <v-col cols="4" class="d-lg-flex d-none justify-center">
+                <v-btn class="rounded-xl" min-height="100" block>
+                  <h2><b>Хочу в облака!</b></h2>
+                </v-btn>
+              </v-col>
+              <v-col cols="6" md="4" class="d-flex justify-end">
+                <div class="d-flex justify-start align-end flex-column w-50 pa-2">
+                  <span>Бронь столов:</span>
+                  <span>288-81-89</span>
+                  <span>Telegram</span>
+                </div>
+              </v-col>
+              <v-col cols="12" class="d-flex d-lg-none justify-center">
+                <v-btn class="rounded-xl" min-height="100" block>
+                  <h2><b>Хочу в облака!</b></h2>
+                </v-btn>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
       </v-img>
@@ -49,14 +58,13 @@
   <v-col class="d-flex flex-column align-space-between full-height-block" cols="12">
     <v-img src="/images/booking.png" class="h-100 d-flex justify-center align-center" draggable="false" cover>
       <v-row class="d-flex justify-space-around align-center full-height-block">
-        <v-col lg="4" md="8" class="d-flex justify-center">
-          <v-img src="/images/map.svg" draggable="false" cover></v-img>
+        <v-col cols="11" md="5" lg="4" class="d-flex justify-center">
+          <v-img src="/images/map.svg" draggable="false" cover class="ma-2"></v-img>
         </v-col>
-        <v-col lg="4" md="8">
-          <div class="d-flex justify-space-around flex-column h-100">
+        <v-col cols="11" md="6" lg="4">
+          <div class="d-flex justify-space-around flex-column h-100 ma-2">
             <div>
-              <h2>Забронируйте стол</h2>
-              <h2> в Облаках</h2>
+              <h2>Забронируйте стол <br> в Облаках</h2>
             </div>
             <div class="d-flex flex-column align-center">
               <v-text-field variant="solo-filled" bg-color="primary" base-color="#000000" placeholder="ФИО" rounded
@@ -138,5 +146,9 @@
 .large-text {
   font-weight: 800;
   font-size: clamp(3rem, 0.7528rem + 1.4205vw, 4rem);
+}
+
+.main-logo {
+  height: clamp(12.5rem, 0.3577rem + 32.3795vw, 25.9375rem);
 }
 </style>
