@@ -1,18 +1,11 @@
 export interface Poster {
-  images: string[];
-  eventDate: string;
-  label: string;
+  images: string[]
+  eventDate: string
+  markdownText: string
 }
 export interface PosterDB {
-  images: string[];
-  eventDate: string;
-  label: string;
+  images: string[]
+  eventDate: string
+  markdownText: string
   _id: string
-}
-export interface PosterCarousel {
-  firstPosters: Poster[];
-  secondPosters: Poster[];
-  thirdPosters: Poster[];
-  cursor: number;
-  variant: string;
 }

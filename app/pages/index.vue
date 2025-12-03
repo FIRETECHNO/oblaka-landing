@@ -102,7 +102,7 @@
         <h2>
           Предстоящие события
         </h2>
-        <PosterCarousel variant="normal"></PosterCarousel>
+        <PosterCarousel></PosterCarousel>
         <v-btn base-color="primary" class="rounded-xl mt-16" min-height="100" min-width="400px">
           <span>Забронировать стол</span>
         </v-btn>
