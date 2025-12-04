@@ -1,4 +1,8 @@
 <script setup>
+import { useDisplay } from 'vuetify'
+
+const { smAndDown } = useDisplay()
+
 // import useImages from '../composables'
 
 let links = ref([
@@ -54,10 +58,14 @@ const slider = useTemplateRef('slider')
 const amount = ref(links.value.length)
 const animationTime = ref(`${amount.value * 10}s`);
 const offset = ref(`${(amount.value - 1) * 4}px`);
-const width = ref('585px');
+const width = ref(smAndDown.value ? '280px' : '585px');
+const height = ref(smAndDown.value ? '300px' : '598px');
+watch(smAndDown,() => {
+    width.value = smAndDown.value ? '280px' : '585px'
+    height.value = smAndDown.value ? '300px' : '598px'
+})
 onMounted(() => {
     setInterval(() => {
-        // slider.value.scroll(1000, 0)
         slider.value.scrollBy(
             {
                 left: 585*3,
@@ -81,20 +89,9 @@ onMounted(() => {
     </div>
 </template>
 <style scoped lang="scss">
-// @keyframes scroll {
-//     0% {
-//         transform: translateX(0);
-//     }
-
-//     100% {
-//         transform: translateX(calc(-1* v-bind(amount) * v-bind(width) + v-bind(offset)))
-//     }
-// }
-
 .slider {
-    height: 600px;
+    // height: 598px;
     overflow-x: scroll;
-    // position: relative;
     width: calc(v-bind(width) * v-bind(amount));
     width: 95vw;
 }
@@ -104,13 +101,14 @@ onMounted(() => {
 }
 
 .slide-track {
-    animation: scroll v-bind(animationTime) linear infinite;
     display: flex;
+    height: 100%;
+    align-items: center;
     width: calc(2 * v-bind(width) * v-bind(amount) + 2 * v-bind(offset));
 }
 
 .slide {
-    height: 598px;
+    height: v-bind(height);
     width: v-bind(width);
     background-color: black;
 }
