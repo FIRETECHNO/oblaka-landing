@@ -84,7 +84,8 @@
                 </template>
               </v-text-field>
               <v-checkbox label="Согласие на обработку персональных данных"></v-checkbox>
-              <v-btn base-color="primary" class="rounded-xl w-100" min-height="100">
+
+              <v-btn base-color="primary" class="rounded-xl" block min-height="100">
                 <h2>Отправить заявку</h2>
               </v-btn>
             </div>
@@ -93,18 +94,23 @@
       </v-row>
     </v-img>
   </v-col>
-  <v-col class="d-flex align-space-between full-height-block" cols="12">
-    <v-row class="d-flex justify-center align-center">
+  <v-col class="d-flex flex-column " cols="12">
+    <v-row class="mt-16 d-flex justify-center align-center">
       <v-col cols="8" class="d-flex justify-space-around align-center flex-column h-100">
-        <span class="mt-16 large-text">
+        <span class=" large-text">
           Афиша
         </span>
         <h2>
           Предстоящие события
         </h2>
         <PosterCarousel></PosterCarousel>
-        <v-btn base-color="primary" class="rounded-xl mt-16" min-height="100" min-width="400px">
-          <span>Забронировать стол</span>
+      </v-col>
+    </v-row>
+
+    <v-row class="d-flex justify-center mt-16">
+      <v-col cols="11" md="6" lg="4" xl="3">
+        <v-btn base-color="primary" class="rounded-xl " min-height="100" block>
+          <h2>Забронировать стол</h2>
         </v-btn>
       </v-col>
     </v-row>
