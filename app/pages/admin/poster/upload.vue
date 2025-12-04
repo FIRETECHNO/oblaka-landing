@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { toast } from 'vue3-toastify'
+import CropImageDialog from '~/components/CropImageDialog.vue'
 
 definePageMeta({
   layout: "admin",
@@ -11,6 +12,8 @@ const router = useRouter()
 
 const file = ref<File | null>(null)
 const previewUrl = ref<string | null>(null)
+const croppedBlob = ref<Blob | null>(null)
+const cropping = ref(false)
 const uploading = ref(false)
 
 const handleFileChange = (event: Event) => {
@@ -19,28 +22,55 @@ const handleFileChange = (event: Event) => {
     file.value = target.files[0]
     if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
     previewUrl.value = URL.createObjectURL(file.value)
+    // Сбрасываем кроп, так как загружен новый файл
+    croppedBlob.value = null
   }
 }
 
+const openCropper = () => {
+  if (!previewUrl.value) return
+  cropping.value = true
+}
+
+const onCrop = (blob: Blob) => {
+  croppedBlob.value = blob
+  cropping.value = false
+  // Обновляем превью на обрезанное изображение
+  if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
+  previewUrl.value = URL.createObjectURL(blob)
+}
+
 const uploadPoster = async () => {
-  if (!file.value) return
+  // Если есть croppedBlob — грузим его
+  // Если кроп не делали — грузим оригинальный файл (опционально)
+  // Но по вашему ТЗ — должно быть только после кропа
+  if (!croppedBlob.value) {
+    toast.error('Сначала обрежьте изображение')
+    return
+  }
 
   uploading.value = true
+
+  const croppedFile = new File([croppedBlob.value], 'poster-cropped.jpg', {
+    type: 'image/jpeg',
+  })
+
   const formData = new FormData()
-  formData.append('file', file.value)
+  formData.append('file', croppedFile)
 
   try {
-    const response = await $fetch<{ success: boolean, key: string, url: string }>('/api/ya-cloud/upload-poster', {
+    const response = await $fetch<{ success: boolean; key: string; url: string }>('/api/ya-cloud/upload-poster', {
       method: 'POST',
       body: formData,
     })
 
     if (response.success) {
       await adminPosterStore.createPoster({ images: [response.url] })
+      toast.success('Постер успешно загружен!')
     }
   } catch (error) {
     console.error('Upload failed', error)
-    toast.error("Ошибка при загрузке!")
+    toast.error('Ошибка при загрузке!')
   } finally {
     uploading.value = false
   }
@@ -50,6 +80,7 @@ onBeforeUnmount(() => {
   if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
 })
 </script>
+
 <template>
   <v-container class="py-8">
     <v-row>
@@ -63,10 +94,16 @@ onBeforeUnmount(() => {
     <v-row v-if="previewUrl" class="mt-6">
       <v-col cols="12" md="6" lg="5">
         <v-card>
-          <v-card-title>Предпросмотр, соотношение ширины к высоте 585/591</v-card-title>
+          <v-card-title>Предпросмотр (соотношение 585/591)</v-card-title>
           <v-card-text>
             <v-img :src="previewUrl" class="rounded" :aspect-ratio="585 / 591" cover />
           </v-card-text>
+          <!-- Кнопка "Обрезать" под превью -->
+          <v-card-actions>
+            <v-btn color="primary" variant="tonal" block @click="openCropper" :disabled="uploading">
+              Обрезать
+            </v-btn>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -74,13 +111,17 @@ onBeforeUnmount(() => {
     <!-- Upload button -->
     <v-row class="mt-4">
       <v-col>
-        <v-btn color="secondary" :loading="uploading" :disabled="!file || uploading" @click="uploadPoster">
+        <v-btn color="secondary" :loading="uploading" :disabled="!croppedBlob || uploading" @click="uploadPoster">
           Загрузить
         </v-btn>
       </v-col>
     </v-row>
+
+    <!-- Кроппер -->
+    <CropImageDialog v-model="cropping" :image-src="previewUrl" :aspect-ratio="585 / 591" @crop="onCrop" />
   </v-container>
 </template>
+
 <style scoped>
 /* Дополнительные стили при необходимости */
 </style>
