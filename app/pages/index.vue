@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+
+</script>
+
 <template>
   <v-row>
     <v-col class="d-flex flex-column align-space-between full-height-block-strict" cols="12">
@@ -54,13 +58,9 @@
       <LandingClouds />
     </v-col>
   </v-row>
-  <v-col class="d-flex flex-column align-space-between justify-space-around full-height-block" cols="12">
-    <!-- <v-row class="d-flex justify-center">
-      <v-col cols="11" md="10" lg="9" xl="8"> -->
-        <GalleryCarousel></GalleryCarousel>
-        <GalleryCarousel class="mb-16"></GalleryCarousel>
-      <!-- </v-col> -->
-    <!-- </v-row> -->
+  <v-col class="d-flex flex-column align-space-between justify-space-around" cols="12">
+    <GalleryCarousel :variant="1"></GalleryCarousel>
+    <GalleryCarousel :variant="2" class="mb-16"></GalleryCarousel>
   </v-col>
 
   <v-col class="d-flex flex-column align-space-between full-height-block" cols="12">

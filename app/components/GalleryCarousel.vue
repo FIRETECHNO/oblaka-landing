@@ -1,24 +1,35 @@
-<script setup>
+<script setup lang="ts">
 import { computed, ref } from 'vue';
 
-let images = ref([
-    { src: "/images/1.png", width: 1280, height: 1280 },
-    { src: "/images/reception.png", width: 1854, height: 542 },
-    { src: "/images/3.png", width: 1080, height: 1080 },
-    { src: "/images/reception.png", width: 1854, height: 542 },
-    { src: "/images/2.png", width: 1280, height: 1280 },
-    { src: "/images/reception.png", width: 1854, height: 542 },
-    { src: "/images/4.png", width: 1280, height: 1280 },
-    { src: "/images/1.png", width: 1280, height: 1280 },
-])
+const props = defineProps<{
+    variant: number
+}>()
+let images1 = [
+    { src: "/images/10.png", width: 2560, height: 1703 },
+    { src: "/images/11.png", width: 2560, height: 1703 },
+    { src: "/images/12.png", width: 2560, height: 1703 },
+    { src: "/images/10.png", width: 2560, height: 1703 },
+    { src: "/images/11.png", width: 2560, height: 1703 },
+    { src: "/images/12.png", width: 2560, height: 1703 },
+]
+
+let images2 = [
+    { src: "/images/13.png", width: 2560, height: 1703 },
+    { src: "/images/14.png", width: 2560, height: 1703 },
+    { src: "/images/15.png", width: 1703, height: 2560 },
+    { src: "/images/16.png", width: 1703, height: 2560 },
+    { src: "/images/13.png", width: 2560, height: 1703 },
+    { src: "/images/14.png", width: 2560, height: 1703 },
+    { src: "/images/15.png", width: 1703, height: 2560 },
+    { src: "/images/16.png", width: 1703, height: 2560 },
+]
+let images = ref(props.variant == 1 ? images1 : images2)
 let height = ref(470);
 let scrollInterval = ref(10000)
 
 
 const scrollContainer = ref(null);
-const timer = ref(null);
-
-const rowHeight = computed(() => parseInt(height.value, 10));
+const timer: any = ref(null);
 
 const processedImages = computed(() => {
     return images.value.map((img) => {
@@ -27,13 +38,13 @@ const processedImages = computed(() => {
         const aspectRatio = w / h;
         return {
             ...img,
-            calculatedWidth: Math.floor(rowHeight.value * aspectRatio),
+            calculatedWidth: Math.floor(height.value * aspectRatio),
         };
     });
 });
 
 const autoScroll = () => {
-    const scroll = scrollContainer.value;
+    const scroll: any = scrollContainer.value;
     if (!scroll) return;
 
     const stepSlice = processedImages.value.slice(0, 3);
@@ -48,8 +59,12 @@ const autoScroll = () => {
     }
 };
 
-onMounted(() => {
+onMounted(async () => {
     timer.value = setInterval(autoScroll, scrollInterval.value);
+    if (props.variant) {
+        const scroll: any = scrollContainer.value;
+        scroll.scrollTo({ left: 70, behavior: 'smooth' })
+    }
 });
 
 onUnmounted(() => {
@@ -59,10 +74,10 @@ onUnmounted(() => {
 
 <template>
 
-    <div ref="scrollContainer" class="d-flex overflow-x-auto align-center" style="gap: 48px;">
-        <v-card v-for="(image, i) in processedImages" :key="i" :height="rowHeight" :width="image.calculatedWidth"
+    <div ref="scrollContainer" class="d-flex overflow-x-auto align-center pt-4 pb-4" style="gap: 32px">
+        <v-card v-for="(image, i) in processedImages" :key="i" :height="height" :width="image.calculatedWidth"
             class="flex-shrink-0 rounded-lg" scrollevation="2">
-            <v-img :src="image.src" :lazy-src="image.lazySrc || image.src" height="100%" width="100%" cover>
+            <v-img :src="image.src" height="100%" width="100%" cover>
             </v-img>
         </v-card>
     </div>
