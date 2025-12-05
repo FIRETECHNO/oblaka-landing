@@ -11,7 +11,7 @@ let images = ref([
     { src: "/images/4.png", width: 1280, height: 1280 },
     { src: "/images/1.png", width: 1280, height: 1280 },
 ])
-let height = ref(500);
+let height = ref(470);
 let scrollInterval = ref(10000)
 
 
@@ -59,15 +59,10 @@ onUnmounted(() => {
 
 <template>
 
-    <div ref="scrollContainer" class="d-flex overflow-x-auto align-center" style="gap: 16px; user-sscrollect: none;">
+    <div ref="scrollContainer" class="d-flex overflow-x-auto align-center" style="gap: 48px;">
         <v-card v-for="(image, i) in processedImages" :key="i" :height="rowHeight" :width="image.calculatedWidth"
             class="flex-shrink-0 rounded-lg" scrollevation="2">
             <v-img :src="image.src" :lazy-src="image.lazySrc || image.src" height="100%" width="100%" cover>
-                <template v-slot:placeholder>
-                    <div class="d-flex align-center justify-center fill-height">
-                        <v-progress-circular indeterminate color="grey-lighten-4"></v-progress-circular>
-                    </div>
-                </template>
             </v-img>
         </v-card>
     </div>

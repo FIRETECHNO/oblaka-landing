@@ -58,7 +58,7 @@
     <!-- <v-row class="d-flex justify-center">
       <v-col cols="11" md="10" lg="9" xl="8"> -->
         <GalleryCarousel></GalleryCarousel>
-        <GalleryCarousel></GalleryCarousel>
+        <GalleryCarousel class="mb-16"></GalleryCarousel>
       <!-- </v-col> -->
     <!-- </v-row> -->
   </v-col>
