@@ -54,6 +54,14 @@
       <LandingClouds />
     </v-col>
   </v-row>
+  <v-col class="d-flex flex-column align-space-between justify-space-around full-height-block" cols="12">
+    <!-- <v-row class="d-flex justify-center">
+      <v-col cols="11" md="10" lg="9" xl="8"> -->
+        <GalleryCarousel></GalleryCarousel>
+        <GalleryCarousel></GalleryCarousel>
+      <!-- </v-col> -->
+    <!-- </v-row> -->
+  </v-col>
 
   <v-col class="d-flex flex-column align-space-between full-height-block" cols="12">
     <v-img src="/images/booking.png" class="h-100 d-flex justify-center align-center" draggable="false" cover>
