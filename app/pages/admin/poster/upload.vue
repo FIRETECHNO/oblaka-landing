@@ -13,6 +13,7 @@ const router = useRouter()
 const file = ref<File | null>(null)
 const previewUrl = ref<string | null>(null)
 const croppedBlob = ref<Blob | null>(null)
+const posterText =ref<string>("")
 const cropping = ref(false)
 const uploading = ref(false)
 
@@ -65,7 +66,7 @@ const uploadPoster = async () => {
     })
 
     if (response.success) {
-      await adminPosterStore.createPoster({ images: [response.url] })
+      await adminPosterStore.createPoster({ images: [response.url], markdownText: posterText.value })
       toast.success('Постер успешно загружен!')
     }
   } catch (error) {
@@ -105,6 +106,13 @@ onBeforeUnmount(() => {
             </v-btn>
           </v-card-actions>
         </v-card>
+      </v-col>
+    </v-row>
+    
+    <v-row class="mt-4">
+      <v-col cols="12" md="6">
+        <v-text-field v-model="posterText" label="Текст афиши" prepend-icon="mdi-text"
+          variant="outlined" density="comfortable"  />
       </v-col>
     </v-row>
 
