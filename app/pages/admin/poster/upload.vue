@@ -13,7 +13,7 @@ const router = useRouter()
 const file = ref<File | null>(null)
 const previewUrl = ref<string | null>(null)
 const croppedBlob = ref<Blob | null>(null)
-const posterText =ref<string>("")
+const posterText = ref<string>("")
 const cropping = ref(false)
 const uploading = ref(false)
 
@@ -40,24 +40,22 @@ const onCrop = (blob: Blob) => {
   if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
   previewUrl.value = URL.createObjectURL(blob)
 }
-
 const uploadPoster = async () => {
-  // Если есть croppedBlob — грузим его
-  // Если кроп не делали — грузим оригинальный файл (опционально)
-  // Но по вашему ТЗ — должно быть только после кропа
-  if (!croppedBlob.value) {
-    toast.error('Сначала обрежьте изображение')
+  if (!file.value) {
+    toast.error('Файл не выбран')
     return
   }
 
   uploading.value = true
 
-  const croppedFile = new File([croppedBlob.value], 'poster-cropped.jpg', {
-    type: 'image/jpeg',
-  })
+  const blobToUpload = croppedBlob.value ?? file.value
+
+  const uploadFile = blobToUpload instanceof File
+    ? blobToUpload
+    : new File([blobToUpload], 'poster.jpg', { type: 'image/jpeg' })
 
   const formData = new FormData()
-  formData.append('file', croppedFile)
+  formData.append('file', uploadFile)
 
   try {
     const response = await $fetch<{ success: boolean; key: string; url: string }>('/api/ya-cloud/upload-poster', {
@@ -66,7 +64,10 @@ const uploadPoster = async () => {
     })
 
     if (response.success) {
-      await adminPosterStore.createPoster({ images: [response.url], markdownText: posterText.value })
+      await adminPosterStore.createPoster({
+        images: [response.url],
+        markdownText: posterText.value,
+      })
       toast.success('Постер успешно загружен!')
     }
   } catch (error) {
@@ -76,6 +77,7 @@ const uploadPoster = async () => {
     uploading.value = false
   }
 }
+
 
 onBeforeUnmount(() => {
   if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
@@ -108,18 +110,18 @@ onBeforeUnmount(() => {
         </v-card>
       </v-col>
     </v-row>
-    
+
     <v-row class="mt-4">
       <v-col cols="12" md="6">
-        <v-text-field v-model="posterText" label="Текст афиши" prepend-icon="mdi-text"
-          variant="outlined" density="comfortable"  />
+        <v-text-field v-model="posterText" label="Текст афиши" prepend-icon="mdi-text" variant="outlined"
+          density="comfortable" />
       </v-col>
     </v-row>
 
     <!-- Upload button -->
     <v-row class="mt-4">
       <v-col>
-        <v-btn color="secondary" :loading="uploading" :disabled="!croppedBlob || uploading" @click="uploadPoster">
+        <v-btn color="secondary" :loading="uploading" :disabled="!file || uploading" @click="uploadPoster">
           Загрузить
         </v-btn>
       </v-col>
