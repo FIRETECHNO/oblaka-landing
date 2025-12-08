@@ -135,11 +135,13 @@
 
   <LandingAiCocktail />
 
+  <LandingMenuBar />
 
-  <v-row>
-    <LandingMenuBar />
-  </v-row>
+  <!-- just a spacer -->
+  <div style="margin-top: 100px;"></div>
+  <!-- just a spacer -->
 
+  <LandingBookForm />
 </template>
 <style scoped lang="scss">
 .user-select-none {

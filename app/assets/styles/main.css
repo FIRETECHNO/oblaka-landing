@@ -56,7 +56,7 @@ h2 {
   font-size: clamp(1.25rem, 0.7528rem + 1.4205vw, 1.875rem);
 }
 .v-checkbox label {
-  font-size: clamp(1rem, 0.7528rem + 1.4205vw, 1.75rem);
+  font-size: clamp(1.125rem, 0.8267rem + 0.8523vw, 1.5rem);
   font-weight: 300;
 }
 

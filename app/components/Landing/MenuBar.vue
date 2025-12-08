@@ -65,20 +65,22 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <v-col cols="12" style="margin-top: 100px !important;">
-    <div ref="slider" class="slider" :style="{ height: slideHeight + 'px' }">
-      <div class="slide-track">
-        <div v-for="(image, index) in duplicatedCarouselImages" :key="index" class="slide">
-          <v-img :src="image" :draggable="false" :aspect-ratio="585 / 591" cover />
+  <v-row>
+    <v-col cols="12" style="margin-top: 100px !important;">
+      <div ref="slider" class="slider" :style="{ height: slideHeight + 'px' }">
+        <div class="slide-track">
+          <div v-for="(image, index) in duplicatedCarouselImages" :key="index" class="slide">
+            <v-img :src="image" :draggable="false" :aspect-ratio="585 / 591" cover />
+          </div>
         </div>
       </div>
-    </div>
-  </v-col>
+    </v-col>
 
-  <v-col cols="12" class="d-flex justify-center mt-6">
-    <span class="clickable-link" style="margin-right: 10%">Меню</span>
-    <span class="clickable-link" style="margin-left: 10%">Бар</span>
-  </v-col>
+    <v-col cols="12" class="d-flex justify-center mt-6">
+      <span class="clickable-link" style="margin-right: 10%">Меню</span>
+      <span class="clickable-link" style="margin-left: 10%">Бар</span>
+    </v-col>
+  </v-row>
 </template>
 
 <style scoped lang="scss">
