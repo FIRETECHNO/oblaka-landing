@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { toast } from 'vue3-toastify'
 import CropImageDialog from '~/components/CropImageDialog.vue'
+import { VMarkdownEditor,VMarkdownView } from 'vue3-markdown'
+import 'vue3-markdown/dist/vue3-markdown.css'
+const mode = ref('dark')
+
 
 definePageMeta({
   layout: "admin",
@@ -13,7 +17,7 @@ const router = useRouter()
 const file = ref<File | null>(null)
 const previewUrl = ref<string | null>(null)
 const croppedBlob = ref<Blob | null>(null)
-const posterText =ref<string>("")
+const posterText = ref("")
 const cropping = ref(false)
 const uploading = ref(false)
 
@@ -108,12 +112,18 @@ onBeforeUnmount(() => {
         </v-card>
       </v-col>
     </v-row>
-    
+
     <v-row class="mt-4">
       <v-col cols="12" md="6">
-        <v-text-field v-model="posterText" label="Текст афиши" prepend-icon="mdi-text"
-          variant="outlined" density="comfortable"  />
+        <!-- <v-text-field v-model="posterText" label="Текст афиши" prepend-icon="mdi-text"
+          variant="outlined" density="comfortable"  /> -->
+        <VMarkdownEditor v-model="posterText" :mode="mode" style="height:500px"></VMarkdownEditor>
       </v-col>
+    </v-row>
+        <v-row class="mt-4" v-if="posterText != ''">
+      <v-col cols="12" md="6">
+        <VMarkdownView :mode="mode" :content="posterText" style="height:fit-content"></VMarkdownView>
+            </v-col>
     </v-row>
 
     <!-- Upload button -->
