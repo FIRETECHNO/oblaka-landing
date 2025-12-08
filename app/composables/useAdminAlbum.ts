@@ -1,5 +1,5 @@
 import { toast } from "vue3-toastify";
-import PosterApi from "~/api/PosterApi";
+import AlbumApi from "~/api/AlbumApi";
 import type { IAlbum, IAlbumDb } from "~/types/IAlbum.interface";
 
 
@@ -11,7 +11,7 @@ export function useAdminAlbum() {
 
   async function createAlbum(poster: IAlbum) {
     try {
-      let res = await PosterApi.createPoster(poster)
+      let res = await AlbumApi.createAlbum(poster)
       albums.value.push(res)
 
       if (process.client)

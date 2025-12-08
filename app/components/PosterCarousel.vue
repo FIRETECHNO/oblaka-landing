@@ -60,7 +60,7 @@ const animationTime = ref(`${amount.value * 10}s`);
 const offset = ref(`${(amount.value - 1) * 4}px`);
 const width = ref(smAndDown.value ? '280px' : '585px');
 const height = ref(smAndDown.value ? '300px' : '598px');
-watch(smAndDown,() => {
+watch(smAndDown, () => {
     width.value = smAndDown.value ? '280px' : '585px'
     height.value = smAndDown.value ? '300px' : '598px'
 })
@@ -68,7 +68,7 @@ onMounted(() => {
     setInterval(() => {
         slider.value.scrollBy(
             {
-                left: 585*3,
+                left: 585 * 3,
                 behavior: 'smooth'
             }
         )

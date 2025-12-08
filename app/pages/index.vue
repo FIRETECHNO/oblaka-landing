@@ -28,7 +28,9 @@
                 <div class="d-flex align-start flex-column w-50 pa-2">
                   <span>ул. Ленина, 88</span>
                   <span>6 этаж</span>
-                  <YaButton />
+                  <ClientOnly>
+                    <YaButton />
+                  </ClientOnly>
                 </div>
               </v-col>
               <v-col cols="4" class="d-lg-flex d-none justify-center">
@@ -124,12 +126,15 @@
     </v-row>
   </v-col>
   <v-col class="d-flex flex-column align-center" cols="12">
-    <h2>
+    <h2 style="margin-top: 50px; margin-bottom: 50px;">
       Прошедшие события
     </h2>
 
     <LandingAlbums />
   </v-col>
+
+  <LandingAiCocktail />
+
 </template>
 <style scoped lang="scss">
 .user-select-none {
