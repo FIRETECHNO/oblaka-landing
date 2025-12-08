@@ -104,7 +104,7 @@ onBeforeUnmount(() => {
           <!-- Кнопка "Обрезать" под превью -->
           <v-card-actions>
             <v-btn color="primary" variant="tonal" block @click="openCropper" :disabled="uploading">
-              Обрезать
+              Обрезать *необязательно
             </v-btn>
           </v-card-actions>
         </v-card>
