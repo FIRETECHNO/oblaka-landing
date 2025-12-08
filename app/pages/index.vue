@@ -135,6 +135,11 @@
 
   <LandingAiCocktail />
 
+
+  <v-row>
+    <LandingMenuBar />
+  </v-row>
+
 </template>
 <style scoped lang="scss">
 .user-select-none {
