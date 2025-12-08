@@ -24,7 +24,7 @@ let images2 = [
     { src: "/images/16.png", width: 1703, height: 2560 },
 ]
 let images = ref(props.variant == 1 ? images1 : images2)
-let height = ref(470);
+let height = ref(400);
 let scrollInterval = ref(10000)
 
 
