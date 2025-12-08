@@ -132,6 +132,9 @@
 
     <LandingAlbums />
   </v-col>
+
+  <LandingAiCocktail />
+
 </template>
 <style scoped lang="scss">
 .user-select-none {
