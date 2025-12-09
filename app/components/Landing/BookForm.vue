@@ -38,7 +38,7 @@
 </template>
 <style scoped lang="scss">
 .image-bg {
-  background-image: url("images/book-form-happy-bday.webp");
+  background-image: url("/images/book-form-happy-bday.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

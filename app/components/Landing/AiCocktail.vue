@@ -76,14 +76,14 @@ function goToAi() {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("images/ai-cocktail-image.webp");
+  background-image: url("/images/ai-cocktail-image.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .cocktail-bg {
-  background-image: url("images/ai-cocktail-image.webp");
+  background-image: url("/images/ai-cocktail-image.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
