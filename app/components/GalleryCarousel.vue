@@ -77,7 +77,7 @@ onUnmounted(() => {
     <div ref="scrollContainer" class="d-flex overflow-x-auto align-center pt-4 pb-4" style="gap: 32px">
         <v-card v-for="(image, i) in processedImages" :key="i" :height="height" :width="image.calculatedWidth"
             class="flex-shrink-0 rounded-lg" scrollevation="2">
-            <v-img :src="image.src" height="100%" width="100%" cover>
+            <v-img :src="image.src" height="100%" width="100%" cover loading="lazy">
             </v-img>
         </v-card>
     </div>
