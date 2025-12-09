@@ -5,23 +5,23 @@ const props = defineProps<{
     variant: number
 }>()
 let images1 = [
-    { src: "/images/10.png", width: 2560, height: 1703 },
-    { src: "/images/11.png", width: 2560, height: 1703 },
-    { src: "/images/12.png", width: 2560, height: 1703 },
-    { src: "/images/10.png", width: 2560, height: 1703 },
-    { src: "/images/11.png", width: 2560, height: 1703 },
-    { src: "/images/12.png", width: 2560, height: 1703 },
+    { src: "/images/10.webp", width: 2560, height: 1703 },
+    { src: "/images/11.webp", width: 2560, height: 1703 },
+    { src: "/images/12.webp", width: 2560, height: 1703 },
+    { src: "/images/10.webp", width: 2560, height: 1703 },
+    { src: "/images/11.webp", width: 2560, height: 1703 },
+    { src: "/images/12.webp", width: 2560, height: 1703 },
 ]
 
 let images2 = [
-    { src: "/images/13.png", width: 2560, height: 1703 },
-    { src: "/images/14.png", width: 2560, height: 1703 },
-    { src: "/images/15.png", width: 1703, height: 2560 },
-    { src: "/images/16.png", width: 1703, height: 2560 },
-    { src: "/images/13.png", width: 2560, height: 1703 },
-    { src: "/images/14.png", width: 2560, height: 1703 },
-    { src: "/images/15.png", width: 1703, height: 2560 },
-    { src: "/images/16.png", width: 1703, height: 2560 },
+    { src: "/images/13.webp", width: 2560, height: 1703 },
+    { src: "/images/14.webp", width: 2560, height: 1703 },
+    { src: "/images/15.webp", width: 1703, height: 2560 },
+    { src: "/images/16.webp", width: 1703, height: 2560 },
+    { src: "/images/13.webp", width: 2560, height: 1703 },
+    { src: "/images/14.webp", width: 2560, height: 1703 },
+    { src: "/images/15.webp", width: 1703, height: 2560 },
+    { src: "/images/16.webp", width: 1703, height: 2560 },
 ]
 let images = ref(props.variant == 1 ? images1 : images2)
 let height = ref(400);
