@@ -70,7 +70,7 @@ onBeforeUnmount(() => {
       <div ref="slider" class="slider" :style="{ height: slideHeight + 'px' }">
         <div class="slide-track">
           <div v-for="(image, index) in duplicatedCarouselImages" :key="index" class="slide">
-            <v-img :src="image" :draggable="false" :aspect-ratio="585 / 591" cover loading="lazy" />
+            <v-img :src="image" :draggable="false" :aspect-ratio="585 / 591" cover loading="lazy" height="100%" />
           </div>
         </div>
       </div>
