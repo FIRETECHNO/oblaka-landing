@@ -23,7 +23,7 @@ export default defineNuxtConfig({
         { property: 'og:image', content: '/icons/logo.png' },
         { property: 'og:type', content: 'website' },
       ],
-    }
+    },
   },
   css: ["@/assets/styles/main.css", "@/assets/styles/fonts.css"],
   modules: [
