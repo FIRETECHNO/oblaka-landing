@@ -17,7 +17,7 @@ function goToAi() {
               <h2>Подберем тебе "тот самый" напиток</h2>
             </div>
 
-            <v-btn base-color="primary" class="rounded-lg"
+            <v-btn base-color="primary" class="rounded-xl"
               style="width: fit-content !important; margin-top: 15%; margin-bottom: 15%;" min-height="90"
               @click="goToAi">
               <h2>Подобрать коктейль</h2>

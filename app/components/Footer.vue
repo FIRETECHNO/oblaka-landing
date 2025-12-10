@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-  <v-row class="d-flex justify-center" style=" background-color: black; margin-top: 100px !important;">
+  <v-row class="d-flex justify-center" style="background-color: black; margin-top: 100px !important;">
     <v-col cols="11">
       <v-row class="h-100">
         <v-col cols="12" md="6" class="d-flex justify-center align-center">
@@ -22,7 +22,7 @@
 
         </v-col>
         <v-col cols="12" md="6" class="d-flex justify-center align-center">
-          <v-img src="icons/logo.png" style="height: 300px"></v-img>
+          <v-img src="/icons/logo.png" style="height: 300px" :draggable="false"></v-img>
         </v-col>
       </v-row>
     </v-col>
