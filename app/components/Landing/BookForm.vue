@@ -19,11 +19,11 @@
   <!-- big devices -->
 
   <!-- small devices -->
-  <v-row class="d-flex d-md-none justify-center image-bg full-height-block">
+  <v-row class="d-flex d-md-none py-8 justify-center image-bg full-height-block">
     <v-col cols="11" class="d-flex flex-column justify-space-between full-height-block">
       <v-row>
         <v-col cols="12">
-          <h2 class="mt-10" style="font-weight: 600;">Вы можете забронировать помещение&nbsp;“Облака”<br>
+          <h2 style="font-weight: 600;">Вы можете забронировать помещение&nbsp;“Облака”<br>
             для проведения своих мероприятий</h2>
         </v-col>
       </v-row>
@@ -38,7 +38,7 @@
 </template>
 <style scoped lang="scss">
 .image-bg {
-  background-image: url("/images/book-form-happy-bday.webp");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url("/images/book-form-happy-bday.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

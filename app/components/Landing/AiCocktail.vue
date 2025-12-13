@@ -83,7 +83,7 @@ function goToAi() {
 }
 
 .cocktail-bg {
-  background-image: url("/images/ai-cocktail-image.webp");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/images/ai-cocktail-image.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
