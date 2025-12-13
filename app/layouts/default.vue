@@ -46,7 +46,7 @@ onMounted(async () => {
   max-width: 80vw;
   max-height: 80vh;
   opacity: 0;
-  animation: fadeInScale 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: fadeInScale 0.8s forwards;
 }
 
 @keyframes fadeInScale {

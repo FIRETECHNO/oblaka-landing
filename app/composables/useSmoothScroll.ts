@@ -1,5 +1,5 @@
 export function useSmoothScroll() {
-  function scrollToId(id: string, offset = 100): boolean {
+  function scrollToId(id: string, offset = 80): boolean {
     if (typeof window === 'undefined') return false
 
     const el = document.getElementById(id)
