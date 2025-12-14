@@ -122,6 +122,9 @@ onBeforeUnmount(() => {
     </v-row>
 
     <v-row class="mt-4">
+      <v-col cols="12" class="mb-3">
+        <h3>Текст для поста</h3>
+      </v-col>
       <v-col cols="12" md="6">
         <MdEditor :toolbars="['bold', 'italic', 'underline', 'quote']" v-model="posterText" theme="dark"
           language="ru" />
@@ -142,5 +145,4 @@ onBeforeUnmount(() => {
   </v-container>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-
 const videoRef = ref<HTMLVideoElement | null>(null)
+
+const { scrollToId } = useSmoothScroll()
+
+function handleScroll(id: string) {
+  scrollToId(id, 100)
+}
+
 
 onMounted(() => {
   const io = new IntersectionObserver(([entry]) => {
@@ -21,11 +26,13 @@ onMounted(() => {
 
       <!-- ======== ВИДЕО ФОН вместо GIF ======== -->
       <div class="hero">
-        <video ref="videoRef" autoplay loop muted playsinline preload="none" poster="/images/first-section-poster.png"
-          class="hero-video">
-          <source src="/images/first-section.mp4" type="video/mp4" />
-          <!-- <source src="/videos/first-section.webm" type="video/webm" /> -->
-        </video>
+        <ClientOnly>
+          <video ref="videoRef" autoplay loop muted playsinline preload="none" poster="/images/first-section-poster.png"
+            class="hero-video">
+            <source src="/images/first-section.mp4" type="video/mp4" />
+            <!-- <source src="/videos/first-section.webm" type="video/webm" /> -->
+          </video>
+        </ClientOnly>
 
         <!-- ======== СОДЕРЖИМОЕ поверх видео ======== -->
         <div class="hero-content">
@@ -76,7 +83,7 @@ onMounted(() => {
                 </v-col>
 
                 <v-col cols="12" class="d-flex d-lg-none justify-center">
-                  <v-btn class="rounded-xl" min-height="100" block>
+                  <v-btn class="rounded-xl" min-height="100" @click="handleScroll('book-form-oblaka-scheme')" block>
                     <h2><b>Хочу в облака!</b></h2>
                   </v-btn>
                 </v-col>
@@ -88,6 +95,7 @@ onMounted(() => {
     </v-col>
 
     <!-- ===== Clouds ===== -->
+    <div id="about-us"></div>
     <v-col cols="12">
       <LandingClouds />
     </v-col>
@@ -100,9 +108,10 @@ onMounted(() => {
   </v-col>
 
   <!-- ===== Бронирование секция ===== -->
+  <div id="book-form-oblaka-scheme"></div>
   <v-col class="d-flex flex-column align-space-between full-height-block" cols="12">
     <v-img src="/images/booking.png" class="h-100 d-flex justify-center align-center" draggable="false" cover>
-      <v-row class="d-flex justify-space-around align-center full-height-block">
+      <v-row class="d-flex justify-space-around align-center my-8 my-md-0 full-height-block">
         <v-col cols="11" md="5" lg="4" class="d-flex justify-center">
           <v-img src="/images/map.svg" draggable="false" cover class="ma-2" />
         </v-col>
@@ -123,7 +132,7 @@ onMounted(() => {
 
               <v-checkbox label="Согласие на обработку персональных данных" />
 
-              <v-btn base-color="primary" class="rounded-xl" block min-height="100">
+              <v-btn base-color="primary" class="rounded-xl" block min-height="100" @click="handleScroll('')">
                 <h2>Отправить заявку</h2>
               </v-btn>
             </div>
@@ -161,6 +170,7 @@ onMounted(() => {
   <!-- ===== AI коктейль ===== -->
   <LandingAiCocktail />
 
+  <div id="menu"></div>
   <!-- ===== Меню ===== -->
   <LandingMenuBar />
 
@@ -169,6 +179,7 @@ onMounted(() => {
 
   <!-- Форма бронирования -->
   <LandingBookForm />
+  <div id="contacts"></div>
 </template>
 
 <style scoped lang="scss">
@@ -207,7 +218,7 @@ onMounted(() => {
 }
 
 .main-logo {
-  height: clamp(12.5rem, 0.3577rem + 32.3795vw, 25.9375rem);
+  height: clamp(11.875rem, 4.5188rem + 21.0177vw, 23.75rem);
 }
 
 .reception-img {

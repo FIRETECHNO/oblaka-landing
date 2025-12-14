@@ -27,7 +27,7 @@ let images2 = [
 ]
 let images = ref(props.variant == 1 ? images1 : images2)
 let imageHeight = computed(() => smAndDown.value ? 240 : 400);
-let scrollInterval = ref(10000)
+let scrollInterval = ref(15000)
 
 
 const scrollContainer = ref(null);
@@ -49,7 +49,7 @@ const autoScroll = () => {
     const scroll: any = scrollContainer.value;
     if (!scroll) return;
 
-    const stepSlice = processedImages.value.slice(0, 3);
+    const stepSlice = processedImages.value.slice(0, 1);
     const scrollStep = stepSlice.reduce((acc, img) => acc + img.calculatedWidth, 0) + (16 * 3); // + gaps
 
     const isAtEnd = scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth - 10;

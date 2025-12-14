@@ -12,6 +12,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.940.0",
     "@mdi/font": "^7.4.47",
+    "@nuxt/image": "^2.0.0",
     "@vavt/cm-extension": "^1.11.2",
     "@vavt/v3-extension": "^4.0.0",
     "@vueuse/core": "^14.1.0",
