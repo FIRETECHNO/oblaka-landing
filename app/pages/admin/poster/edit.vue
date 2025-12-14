@@ -19,7 +19,7 @@ definePageMeta({
 const router = useRoute();
 const adminPosterStore = useAdminPoster()
 const _id = router.query._id
-let poster = ref<IPosterDb>(await adminPosterStore.getPosterById(_id));
+let poster = ref<IPosterDb>();
 
 
 const file = ref<File | null>(null)
@@ -95,8 +95,8 @@ const uploadPoster = async () => {
 }
 onMounted(async () => {
   poster.value = await adminPosterStore.getPosterById(_id)
-  previewUrl.value = await poster.value.images[0]
-  posterText.value = await poster.value.markdownText
+  previewUrl.value = poster.value.images[0]
+  posterText.value = poster.value.markdownText
 })
 onBeforeUnmount(() => {
   if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
