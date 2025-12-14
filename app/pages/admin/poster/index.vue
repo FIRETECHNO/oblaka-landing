@@ -12,6 +12,13 @@ const sections: any[] = [
     to: '/admin/poster/upload',
     color: 'primary'
   },
+  {
+    title: 'Все афиши',
+    description: 'Удалить и редактировать афиши',
+    icon: 'mdi-image-album',
+    to: '/admin/poster/list',
+    color: 'primary'
+  },
 ]
 </script>
 
