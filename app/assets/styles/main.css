@@ -66,3 +66,10 @@ h2 {
 .full-height-block-strict {
   height: calc(100vh - 80px);
 }
+
+.md-editor .cm-editor {
+  font-size: 18px !important;
+}
+.md-editor-preview{
+  font-size: 18px !important;
+}

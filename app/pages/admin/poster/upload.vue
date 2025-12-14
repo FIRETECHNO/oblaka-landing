@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { toast } from 'vue3-toastify'
 import CropImageDialog from '~/components/CropImageDialog.vue'
+import { MdEditor, config } from 'md-editor-v3';
+import 'md-editor-v3/lib/style.css';
+import RU from '@vavt/cm-extension/dist/locale/ru';
+config({
+  editorConfig: {
+    languageUserDefined: {
+      'ru': RU
+    }
+  }
+})
 
 definePageMeta({
   layout: "admin",
@@ -112,9 +122,12 @@ onBeforeUnmount(() => {
     </v-row>
 
     <v-row class="mt-4">
+      <v-col cols="12" class="mb-3">
+        <h3>Текст для поста</h3>
+      </v-col>
       <v-col cols="12" md="6">
-        <v-text-field v-model="posterText" label="Текст афиши" prepend-icon="mdi-text" variant="outlined"
-          density="comfortable" />
+        <MdEditor :toolbars="['bold', 'italic', 'underline', 'quote']" v-model="posterText" theme="dark"
+          language="ru" />
       </v-col>
     </v-row>
 
@@ -132,6 +145,4 @@ onBeforeUnmount(() => {
   </v-container>
 </template>
 
-<style scoped>
-/* Дополнительные стили при необходимости */
-</style>
+<style scoped></style>
