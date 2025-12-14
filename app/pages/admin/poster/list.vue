@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const adminPosterStore = useAdminPoster()
+adminPosterStore.getPosters()
+let posters = adminPosterStore.posters
+
 definePageMeta({
   layout: "admin",
   middleware: "admin"
@@ -7,5 +11,10 @@ definePageMeta({
 
 </script>
 <template>
+  <v-row>
+    <v-col :span="4" v-for="poster in posters">
+      <PosterCard :poster="poster"></PosterCard>
+    </v-col>
+  </v-row>
 
 </template>

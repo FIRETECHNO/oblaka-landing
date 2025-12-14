@@ -24,11 +24,45 @@ export function useAdminPoster() {
       console.log(error);
     }
   }
+  async function getPosters() {
+    try {
+      let res = await PosterApi.getPosters()
+      posters.value = res
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function getPosterById(_id: any) {
+    //ne nays realization
+    try {
+      let res = await PosterApi.getPosterById(_id)
+      return res
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function edit(poster: IPoster, _id: any) {
+    try {
+      let res = await PosterApi.edit(poster, _id)
+      posters.value = res
+      if (process.client)
+        toast("Афиша отредактирована!", {
+          type: "success",
+          autoClose: 400,
+          onClose: () => { router.push("/admin/poster") }
+        })
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return {
     // vars
-
+    posters,
     // functions
     createPoster,
+    getPosters,
+    getPosterById,
+    edit
   }
 }
