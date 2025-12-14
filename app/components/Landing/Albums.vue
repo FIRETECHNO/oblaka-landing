@@ -73,7 +73,8 @@ onBeforeUnmount(() => {
     <div class="slide-track">
       <div v-for="album in duplicatedAlbums" :key="album._id" class="slide">
         <div class="slide-content">
-          <v-img :src="album.previewImage" :draggable="false" :aspect-ratio="585 / 591" cover class="slide-image" />
+          <v-img :src="album.previewImage" :draggable="false" :aspect-ratio="585 / 591" cover class="slide-image"
+            loading="lazy" />
           <div class="album-title">
             {{ album.name }}
           </div>

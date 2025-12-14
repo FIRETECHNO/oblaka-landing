@@ -80,10 +80,10 @@ onMounted(() => {
     <div class="slider" ref="slider">
         <div class="slide-track">
             <div class="slide mr-2 ml-2" v-for="image in links">
-                <v-img :src="image.images[0]" :draggable="false"></v-img>
+                <v-img :src="image.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
             </div>
             <div class="slide mr-2 ml-2" v-for="image in links">
-                <v-img :src="image.images[0]" :draggable="false"></v-img>
+                <v-img :src="image.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
             </div>
         </div>
     </div>

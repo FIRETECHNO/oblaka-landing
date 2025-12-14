@@ -8,35 +8,35 @@ export function useAlbum() {
       {
         name: "test",
         // туту пока постер, нужно будет убрать
-        previewImage: "https://storage.yandexcloud.net/oblaka-images/album-previews/13.png",
+        previewImage: "https://storage.yandexcloud.net/oblaka-images/album-previews/13.webp",
         images: [],
         _id: "asdadefrk33m3dm"
       },
       {
         name: "test",
         // туту пока постер, нужно будет убрать
-        previewImage: "https://storage.yandexcloud.net/oblaka-images/album-previews/13.png",
+        previewImage: "https://storage.yandexcloud.net/oblaka-images/album-previews/13.webp",
         images: [],
         _id: "asdadefrk133m3dm"
       },
       {
         name: "test",
         // туту пока постер, нужно будет убрать
-        previewImage: "https://storage.yandexcloud.net/oblaka-images/album-previews/13.png",
+        previewImage: "https://storage.yandexcloud.net/oblaka-images/album-previews/13.webp",
         images: [],
         _id: "asdad3efrk33m3dm"
       },
       {
         name: "test",
         // туту пока постер, нужно будет убрать
-        previewImage: "https://storage.yandexcloud.net/oblaka-images/album-previews/13.png",
+        previewImage: "https://storage.yandexcloud.net/oblaka-images/album-previews/13.webp",
         images: [],
         _id: "asdade324frk33m3dm"
       },
       {
         name: "test",
         // туту пока постер, нужно будет убрать
-        previewImage: "https://storage.yandexcloud.net/oblaka-images/album-previews/13.png",
+        previewImage: "https://storage.yandexcloud.net/oblaka-images/album-previews/13.webp",
         images: [],
         _id: "asdadef234rk33m3dm"
       }
