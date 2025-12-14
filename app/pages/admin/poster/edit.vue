@@ -95,7 +95,6 @@ const uploadPoster = async () => {
 }
 onMounted(async () => {
   poster.value = await adminPosterStore.getPosterById(_id)
-  console.log(poster.value)
   previewUrl.value = await poster.value.images[0]
   posterText.value = await poster.value.markdownText
 })
