@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const adminPosterStore = useAdminPoster()
-adminPosterStore.getPosters()
+await adminPosterStore.getPosters()
 let posters = adminPosterStore.posters
 
 definePageMeta({

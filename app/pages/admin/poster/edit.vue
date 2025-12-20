@@ -19,7 +19,11 @@ definePageMeta({
 const router = useRoute();
 const adminPosterStore = useAdminPoster()
 const _id = router.query._id
-let poster = ref<IPosterDb>();
+let poster = ref<IPosterDb>({
+  images: [],
+  markdownText: "",
+  _id: ""
+});
 
 
 const file = ref<File | null>(null)
@@ -53,7 +57,7 @@ const onCrop = (blob: Blob) => {
   previewUrl.value = URL.createObjectURL(blob)
 }
 const uploadPoster = async () => {
-  if (!file.value) {
+  if (!file.value && !croppedBlob.value) {
     await adminPosterStore.edit({
       images: poster.value.images,
       markdownText: posterText.value,
