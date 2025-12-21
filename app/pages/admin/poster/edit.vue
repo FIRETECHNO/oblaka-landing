@@ -5,6 +5,8 @@ import { MdEditor, config } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 import RU from '@vavt/cm-extension/dist/locale/ru';
 import type { IPosterDb } from '~/types/IPoster.interface';
+import { VueDatePicker } from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 config({
   editorConfig: {
     languageUserDefined: {
@@ -22,6 +24,7 @@ const _id = router.query._id
 let poster = ref<IPosterDb>({
   images: [],
   markdownText: "",
+  eventDate: "",
   _id: ""
 });
 
@@ -32,6 +35,7 @@ const croppedBlob = ref<Blob | null>(null)
 const posterText = ref<string>("")
 const cropping = ref(false)
 const uploading = ref(false)
+const date = ref(new Date())
 
 const handleFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement
@@ -61,6 +65,7 @@ const uploadPoster = async () => {
     await adminPosterStore.edit({
       images: poster.value.images,
       markdownText: posterText.value,
+      eventDate: date.value.toISOString()
     }, poster.value._id)
     toast.success('Постер успешно загружен без изменения картинки!')
     return
@@ -87,6 +92,7 @@ const uploadPoster = async () => {
       await adminPosterStore.edit({
         images: [response.url],
         markdownText: posterText.value,
+        eventDate: date.value.toISOString()
       }, poster.value._id)
       toast.success('Постер успешно загружен!')
     }
@@ -101,6 +107,7 @@ onMounted(async () => {
   poster.value = await adminPosterStore.getPosterById(_id)
   previewUrl.value = poster.value.images[0]
   posterText.value = poster.value.markdownText
+  date.value = new Date(poster.value.eventDate)
 })
 onBeforeUnmount(() => {
   if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
@@ -140,6 +147,12 @@ onBeforeUnmount(() => {
       <v-col cols="12" md="6">
         <MdEditor :toolbars="['bold', 'italic', 'underline', 'quote']" v-model="posterText" theme="dark"
           language="ru" />
+      </v-col>
+    </v-row>
+
+    <v-row class="mt-4">
+      <v-col cols="4">
+        <VueDatePicker v-model="date"></VueDatePicker>
       </v-col>
     </v-row>
 
