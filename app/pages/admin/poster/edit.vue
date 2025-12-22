@@ -35,7 +35,8 @@ const croppedBlob = ref<Blob | null>(null)
 const posterText = ref<string>("")
 const cropping = ref(false)
 const uploading = ref(false)
-const date = ref(new Date())
+const date = ref<Date>(new Date())
+const selectDate = ref<boolean>(false);
 
 const handleFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement
@@ -167,5 +168,13 @@ onBeforeUnmount(() => {
 
     <!-- Кроппер -->
     <CropImageDialog v-model="cropping" :image-src="previewUrl" :aspect-ratio="585 / 591" @crop="onCrop" />
+    <v-dialog v-model="selectDate">
+      <h2>Выложить пост в telegram?</h2>
+      <template v-slot:actions>
+        <v-btn class="ms-auto" text="Не выкладывать" @click="selectDate = false"></v-btn>
+        <v-btn class="ms-auto" text="Выложить сейчас" v-if="date===null" @click="selectDate = false"></v-btn>
+        <v-btn class="ms-auto" :text="`Выложить в ${date.toISOString()}`" v-if="date > new Date()" @click="selectDate = false"></v-btn>
+      </template>
+    </v-dialog>
   </v-container>
 </template>

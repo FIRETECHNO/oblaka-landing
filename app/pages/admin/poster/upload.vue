@@ -28,7 +28,8 @@ const croppedBlob = ref<Blob | null>(null)
 const posterText = ref<string>("")
 const cropping = ref(false)
 const uploading = ref(false)
-const date = ref(new Date())
+const date = ref<Date>(new Date())
+const selectDate = ref<boolean>(false);
 
 const handleFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement
@@ -53,7 +54,7 @@ const onCrop = (blob: Blob) => {
   if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
   previewUrl.value = URL.createObjectURL(blob)
 }
-const uploadPoster = async () => {
+const uploadPoster = async (upload: boolean) => {
   if (!file.value) {
     toast.error('Файл не выбран')
     return
@@ -77,11 +78,20 @@ const uploadPoster = async () => {
     })
 
     if (response.success) {
-      await adminPosterStore.createPoster({
-        images: [response.url],
-        markdownText: posterText.value,
-        eventDate: date.value.toISOString()
-      })
+      if (upload) {
+        await adminPosterStore.createPoster({
+          images: [response.url],
+          markdownText: posterText.value,
+          eventDate: date.value.toISOString()
+        })
+      } else {
+        await adminPosterStore.createPoster({
+          images: [response.url],
+          markdownText: posterText.value,
+          eventDate: ""
+        })
+      }
+
       toast.success('Постер успешно загружен!')
     }
   } catch (error) {
@@ -89,6 +99,7 @@ const uploadPoster = async () => {
     toast.error('Ошибка при загрузке!')
   } finally {
     uploading.value = false
+    selectDate.value = false
   }
 }
 
@@ -144,7 +155,7 @@ onBeforeUnmount(() => {
     <!-- Upload button -->
     <v-row class="mt-4">
       <v-col>
-        <v-btn color="secondary" :loading="uploading" :disabled="!file || uploading" @click="uploadPoster">
+        <v-btn color="secondary" :loading="uploading" :disabled="!file || uploading" @click="selectDate = true">
           Загрузить
         </v-btn>
       </v-col>
@@ -152,6 +163,16 @@ onBeforeUnmount(() => {
 
     <!-- Кроппер -->
     <CropImageDialog v-model="cropping" :image-src="previewUrl" :aspect-ratio="585 / 591" @crop="onCrop" />
+    <v-dialog v-model="selectDate" width="auto">
+      <v-card max-width="800" prepend-icon="mdi-update" title="Выложить пост в telegram?">
+        <template v-slot:actions>
+          <v-btn text="Не выкладывать" @click="uploadPoster"></v-btn>
+          <v-btn text="Выложить сейчас" v-if="date <= new Date()" @click="uploadPoster"></v-btn>
+          <v-btn :text="`Выложить в ${date.toLocaleString('ru-RU', { hour12: false })}`" v-if="date > new Date()"
+            @click="uploadPoster"></v-btn>
+        </template>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
