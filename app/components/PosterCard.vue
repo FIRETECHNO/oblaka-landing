@@ -12,7 +12,7 @@ function goToEdit(_id:string){
     <div class="slide mr-2 ml-2">
         <v-img :src="poster.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
         <div class="w-100 d-flex justify-space-around">
-            <v-btn icon="mdi-pencil-outline" @click="goToEdit(poster._id)"></v-btn>
+            <v-btn icon="mdi-pencil-outline" @click="goToEdit(poster._id)" v-if="poster.eventDate==''"></v-btn>
             <v-btn icon="mdi-trash-can-outline"></v-btn>
         </div>
     </div>

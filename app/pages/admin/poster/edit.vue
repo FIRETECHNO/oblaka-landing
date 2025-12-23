@@ -61,7 +61,7 @@ const onCrop = (blob: Blob) => {
   if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
   previewUrl.value = URL.createObjectURL(blob)
 }
-const uploadPoster = async () => {
+const uploadPoster = async (upload: boolean) => {
   if (!file.value && !croppedBlob.value) {
     await adminPosterStore.edit({
       images: poster.value.images,
@@ -90,11 +90,19 @@ const uploadPoster = async () => {
     })
 
     if (response.success) {
-      await adminPosterStore.edit({
-        images: [response.url],
-        markdownText: posterText.value,
-        eventDate: date.value.toISOString()
-      }, poster.value._id)
+      if (upload) {
+        await adminPosterStore.createPoster({
+          images: [response.url],
+          markdownText: posterText.value,
+          eventDate: new Date() < date.value ? date.value.toISOString() : new Date().toISOString()
+        })
+      } else {
+        await adminPosterStore.createPoster({
+          images: [response.url],
+          markdownText: posterText.value,
+          eventDate: ""
+        })
+      }
       toast.success('Постер успешно загружен!')
     }
   } catch (error) {
@@ -160,7 +168,7 @@ onBeforeUnmount(() => {
     <!-- Upload button -->
     <v-row class="mt-4">
       <v-col>
-        <v-btn color="secondary" :loading="uploading" :disabled="uploading" @click="uploadPoster">
+        <v-btn color="secondary" :loading="uploading" :disabled="uploading" @click="selectDate = true">
           Загрузить
         </v-btn>
       </v-col>
@@ -168,13 +176,15 @@ onBeforeUnmount(() => {
 
     <!-- Кроппер -->
     <CropImageDialog v-model="cropping" :image-src="previewUrl" :aspect-ratio="585 / 591" @crop="onCrop" />
-    <v-dialog v-model="selectDate">
-      <h2>Выложить пост в telegram?</h2>
-      <template v-slot:actions>
-        <v-btn class="ms-auto" text="Не выкладывать" @click="selectDate = false"></v-btn>
-        <v-btn class="ms-auto" text="Выложить сейчас" v-if="date===null" @click="selectDate = false"></v-btn>
-        <v-btn class="ms-auto" :text="`Выложить в ${date.toISOString()}`" v-if="date > new Date()" @click="selectDate = false"></v-btn>
-      </template>
+    <v-dialog v-model="selectDate" width="auto">
+      <v-card max-width="800" prepend-icon="mdi-update" title="Выложить пост в telegram?">
+        <template v-slot:actions>
+          <v-btn text="Не выкладывать" @click="uploadPoster(false)"></v-btn>
+          <v-btn text="Выложить сейчас" v-if="date <= new Date()" @click="uploadPoster(true)"></v-btn>
+          <v-btn :text="`Выложить в ${date.toLocaleString('ru-RU', { hour12: false })}`" v-if="date > new Date()"
+            @click="uploadPoster(true)"></v-btn>
+        </template>
+      </v-card>
     </v-dialog>
   </v-container>
 </template>

@@ -82,7 +82,7 @@ const uploadPoster = async (upload: boolean) => {
         await adminPosterStore.createPoster({
           images: [response.url],
           markdownText: posterText.value,
-          eventDate: date.value.toISOString()
+          eventDate: new Date() < date.value ? date.value.toISOString() : new Date().toISOString()
         })
       } else {
         await adminPosterStore.createPoster({
@@ -166,10 +166,10 @@ onBeforeUnmount(() => {
     <v-dialog v-model="selectDate" width="auto">
       <v-card max-width="800" prepend-icon="mdi-update" title="Выложить пост в telegram?">
         <template v-slot:actions>
-          <v-btn text="Не выкладывать" @click="uploadPoster"></v-btn>
-          <v-btn text="Выложить сейчас" v-if="date <= new Date()" @click="uploadPoster"></v-btn>
+          <v-btn text="Не выкладывать" @click="uploadPoster(false)"></v-btn>
+          <v-btn text="Выложить сейчас" v-if="date <= new Date()" @click="uploadPoster(true)"></v-btn>
           <v-btn :text="`Выложить в ${date.toLocaleString('ru-RU', { hour12: false })}`" v-if="date > new Date()"
-            @click="uploadPoster"></v-btn>
+            @click="uploadPoster(true)"></v-btn>
         </template>
       </v-card>
     </v-dialog>
