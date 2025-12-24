@@ -4,12 +4,20 @@ definePageMeta({
   middleware: "admin"
 })
 
+
 const sections: any[] = [
   {
     title: 'Добавить альбом',
     description: 'Загрузить новый альбом',
     icon: 'mdi-upload-circle-outline',
     to: '/admin/album/upload',
+    color: 'primary'
+  },
+  {
+    title: 'Все альбомы',
+    description: 'Удалить и редактировать альбомы',
+    icon: 'mdi-image-album',
+    to: '/admin/album/list',
     color: 'primary'
   },
 ]
