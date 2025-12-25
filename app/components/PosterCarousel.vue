@@ -60,6 +60,25 @@ const animationTime = ref(`${amount.value * 10}s`);
 const offset = ref(`${(amount.value - 1) * 4}px`);
 const width = ref(smAndDown.value ? '280px' : '585px');
 const height = ref(smAndDown.value ? '300px' : '598px');
+
+function next() {
+    slider.value.scrollBy(
+        {
+            left: smAndDown.value ? 280 * 3 : 585 * 3,
+            behavior: 'smooth'
+        }
+    )
+}
+
+function prev() {
+    slider.value.scrollBy(
+        {
+            left: smAndDown.value ? -280 * 3 : -585 * 3,
+            behavior: 'smooth'
+        }
+    )
+}
+
 watch(smAndDown, () => {
     width.value = smAndDown.value ? '280px' : '585px'
     height.value = smAndDown.value ? '300px' : '598px'
@@ -77,13 +96,19 @@ onMounted(() => {
 // console.log(offset,width)
 </script>
 <template>
-    <div class="slider" ref="slider">
-        <div class="slide-track">
-            <div class="slide mr-2 ml-2" v-for="image in links">
-                <v-img :src="image.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
-            </div>
-            <div class="slide mr-2 ml-2" v-for="image in links">
-                <v-img :src="image.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
+    <div style="position: relative">
+        <div class="slider" ref="slider">
+            <div class="slide-track">
+                <v-btn icon="mdi-arrow-left" class="back-button" @click="prev"></v-btn>
+
+                <div class="slide mr-2 ml-2" v-for="image in links">
+                    <v-img :src="image.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
+                </div>
+                <div class="slide mr-2 ml-2" v-for="image in links">
+                    <v-img :src="image.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
+                </div>
+
+                <v-btn icon="mdi-arrow-right" class="next-button" @click="next"></v-btn>
             </div>
         </div>
     </div>
@@ -94,6 +119,7 @@ onMounted(() => {
     overflow-x: scroll;
     width: calc(v-bind(width) * v-bind(amount));
     width: 95vw;
+    // position: relative;
 }
 
 ::-webkit-scrollbar {
@@ -111,5 +137,17 @@ onMounted(() => {
     height: v-bind(height);
     width: v-bind(width);
     background-color: black;
+}
+
+.next-button {
+    position: absolute;
+    right: 10px;
+    z-index: 1000;
+}
+
+.back-button {
+    position: absolute;
+    left: 10px;
+    z-index: 1000;
 }
 </style>
