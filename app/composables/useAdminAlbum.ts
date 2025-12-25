@@ -3,15 +3,18 @@ import AlbumApi from "~/api/AlbumApi";
 import type { IAlbum, IAlbumDb } from "~/types/IAlbum.interface";
 export function useAdminAlbum() {
   let albums = useState<IAlbumDb[]>(() => [])
+  let cursor = useState<number>(() => 0)
 
 
   const router = useRouter()
 
-  async function getAlbums(){
-    let albumsList = await AlbumApi.getAlbums()
-    for (let album of albumsList.response.items){
-      let res = await AlbumApi.fetchAlbumImage(album.id)
-      albums.value.push({previewImage:res.response.items[0]?.orig_photo.url,_id:"1"})
+  async function getAlbums() {
+    try {
+      let res = await AlbumApi.getAlbums(cursor.value)
+      cursor.value = cursor.value + 30
+      albums.value = res;
+    } catch (error) {
+      console.log(error);
     }
   }
 
