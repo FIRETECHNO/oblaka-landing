@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   build: {
-    transpile: ['vuetify','@vuepic/vue-datepicker'],
+    transpile: ['vuetify', '@vuepic/vue-datepicker'],
   },
   app: {
     head: {
@@ -39,6 +39,7 @@ export default defineNuxtConfig({
     ycAccessKeyId: process.env.YC_KEY_ID,
     ycSecretAccessKey: process.env.YC_SECRET,
     ycBucket: process.env.YC_BUCKET,
+    vkAccessToken: process.env.VK_ACCESS_TOKEN,
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE,
     },
