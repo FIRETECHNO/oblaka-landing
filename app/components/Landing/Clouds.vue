@@ -22,7 +22,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: section,
           start: 'top top',       // когда секция касается верха viewport
-          end: '+=1200vh',         // анимация длится 100vh скролла
+          end: '+=900vh',         // анимация длится 100vh скролла
           pin: true,              // замирает на экране
           pinSpacing: true,       // сохраняет пространство (не "прыгает" контент)
           scrub: true,            // плавная привязка к скроллу
@@ -31,7 +31,7 @@ onMounted(() => {
       })
 
       tl.to([left, right], {
-        width: '40vw',
+        width: '32vw',
         ease: 'none',
       })
 
@@ -56,7 +56,7 @@ onBeforeUnmount(() => {
     <!-- Опционально: текст поверх -->
     <div class="content">
       <v-row class="d-flex justify-center">
-        <v-col cols="10" sm="8" md="7" lg="6">
+        <v-col cols="9" sm="8" md="7" lg="6">
           <p>
             Самый высокий бар-ресторан города с летней террасой
             Мы предлагаем вам обширную карту коктейльной классики,
