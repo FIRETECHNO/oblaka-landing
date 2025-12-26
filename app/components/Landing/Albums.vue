@@ -4,7 +4,7 @@ import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const { smAndDown } = useDisplay()
-const albumStore = useAlbum()
+const albumStore = useAdminAlbum()
 const slider = ref(null)
 const router = useRouter()
 

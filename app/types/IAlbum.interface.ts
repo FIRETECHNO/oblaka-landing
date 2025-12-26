@@ -1,5 +1,5 @@
 export interface IAlbum {
-  // name: string
+  name: string
   previewImage: string | undefined
   // images: string[] // array of images urls at ya cloud
 }

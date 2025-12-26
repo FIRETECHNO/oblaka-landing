@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
     let albums = []
     for (let album of res?.response?.items) {
       let image_res:any = await fetchAlbumImage(album.id)
-      albums.push({ previewImage: image_res.response.items[0]?.orig_photo.url, _id: album.id })
+      albums.push({ previewImage: image_res.response.items[0]?.orig_photo.url, _id: album.id, name:album.title })
     }
     return albums
   })
