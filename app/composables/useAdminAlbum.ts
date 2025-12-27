@@ -10,9 +10,11 @@ export function useAdminAlbum() {
 
   async function getAlbums() {
     try {
-      let res = await AlbumApi.getAlbums(cursor.value)
-      cursor.value = cursor.value + 30
-      albums.value = res;
+      if (albums.value.length==0){
+        let res = await AlbumApi.getAlbums(cursor.value)
+        cursor.value = cursor.value + 10
+        albums.value = res;
+      }
     } catch (error) {
       console.log(error);
     }

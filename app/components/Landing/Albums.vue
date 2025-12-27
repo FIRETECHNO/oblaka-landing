@@ -72,7 +72,7 @@ onBeforeUnmount(() => {
   <div ref="slider" class="slider" :style="{ height: slideHeight + 'px' }">
     <div class="slide-track">
       <div v-for="album in duplicatedAlbums" :key="album._id" class="slide">
-        <div class="slide-content">
+        <a class="slide-content" :href="`https://vk.com/album-50103584_${album._id}`" target="_blank">
           <v-img :src="album.previewImage" :draggable="false" :aspect-ratio="585 / 591" cover class="slide-image"
             loading="lazy" />
           <div class="album-title">
@@ -81,7 +81,7 @@ onBeforeUnmount(() => {
           <NuxtLink class="view-link" @click="viewAlbum(album._id)">
             Смотреть фото
           </NuxtLink>
-        </div>
+        </a>
       </div>
     </div>
   </div>
