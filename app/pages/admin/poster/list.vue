@@ -12,7 +12,7 @@ definePageMeta({
 </script>
 <template>
   <v-row>
-    <v-col :span="4" v-for="poster in posters">
+    <v-col cols="4" v-for="poster in posters">
       <PosterCard :poster="poster"></PosterCard>
     </v-col>
   </v-row>

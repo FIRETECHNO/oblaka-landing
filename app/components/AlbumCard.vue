@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { IPosterDb } from '~/types/IPoster.interface';
+import type { IAlbumDb } from '~/types/IAlbum.interface';
+
 const router = useRouter()
 const props = defineProps<
-    { poster: IPosterDb }
+    { album: IAlbumDb }
 >()
 function goToEdit(_id:string){
     router.push(`/admin/poster/edit?_id=${_id}`)
@@ -10,9 +11,9 @@ function goToEdit(_id:string){
 </script>
 <template>
     <div class="slide mr-2 ml-2">
-        <v-img :src="poster.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
+        <v-img :src="album.previewImage" :draggable="false" loading="lazy" height="100%" cover></v-img>
         <div class="w-100 d-flex justify-space-around">
-            <v-btn icon="mdi-pencil-outline" @click="goToEdit(poster._id)" v-if="poster.eventDate==''"></v-btn>
+            <v-btn icon="mdi-pencil-outline" @click="goToEdit(album._id)"></v-btn>
             <v-btn icon="mdi-trash-can-outline"></v-btn>
         </div>
     </div>

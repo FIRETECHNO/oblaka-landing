@@ -4,6 +4,8 @@ import CropImageDialog from '~/components/CropImageDialog.vue'
 import { MdEditor, config } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 import RU from '@vavt/cm-extension/dist/locale/ru';
+import { VueDatePicker } from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 config({
   editorConfig: {
     languageUserDefined: {
@@ -26,6 +28,8 @@ const croppedBlob = ref<Blob | null>(null)
 const posterText = ref<string>("")
 const cropping = ref(false)
 const uploading = ref(false)
+const date = ref<Date>(new Date())
+const selectDate = ref<boolean>(false);
 
 const handleFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement
@@ -50,7 +54,7 @@ const onCrop = (blob: Blob) => {
   if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
   previewUrl.value = URL.createObjectURL(blob)
 }
-const uploadPoster = async () => {
+const uploadPoster = async (upload: boolean) => {
   if (!file.value) {
     toast.error('Файл не выбран')
     return
@@ -74,10 +78,20 @@ const uploadPoster = async () => {
     })
 
     if (response.success) {
-      await adminPosterStore.createPoster({
-        images: [response.url],
-        markdownText: posterText.value,
-      })
+      if (upload) {
+        await adminPosterStore.createPoster({
+          images: [response.url],
+          markdownText: posterText.value,
+          eventDate: new Date() < date.value ? date.value.toISOString() : new Date().toISOString()
+        })
+      } else {
+        await adminPosterStore.createPoster({
+          images: [response.url],
+          markdownText: posterText.value,
+          eventDate: ""
+        })
+      }
+
       toast.success('Постер успешно загружен!')
     }
   } catch (error) {
@@ -85,6 +99,7 @@ const uploadPoster = async () => {
     toast.error('Ошибка при загрузке!')
   } finally {
     uploading.value = false
+    selectDate.value = false
   }
 }
 
@@ -131,10 +146,16 @@ onBeforeUnmount(() => {
       </v-col>
     </v-row>
 
+    <v-row class="mt-4">
+      <v-col cols="4">
+        <VueDatePicker v-model="date"></VueDatePicker>
+      </v-col>
+    </v-row>
+
     <!-- Upload button -->
     <v-row class="mt-4">
       <v-col>
-        <v-btn color="secondary" :loading="uploading" :disabled="!file || uploading" @click="uploadPoster">
+        <v-btn color="secondary" :loading="uploading" :disabled="!file || uploading" @click="selectDate = true">
           Загрузить
         </v-btn>
       </v-col>
@@ -142,6 +163,16 @@ onBeforeUnmount(() => {
 
     <!-- Кроппер -->
     <CropImageDialog v-model="cropping" :image-src="previewUrl" :aspect-ratio="585 / 591" @crop="onCrop" />
+    <v-dialog v-model="selectDate" width="auto">
+      <v-card max-width="800" prepend-icon="mdi-update" title="Выложить пост в telegram?">
+        <template v-slot:actions>
+          <v-btn text="Не выкладывать" @click="uploadPoster(false)"></v-btn>
+          <v-btn text="Выложить сейчас" v-if="date <= new Date()" @click="uploadPoster(true)"></v-btn>
+          <v-btn :text="`Выложить в ${date.toLocaleString('ru-RU', { hour12: false })}`" v-if="date > new Date()"
+            @click="uploadPoster(true)"></v-btn>
+        </template>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
