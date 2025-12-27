@@ -78,7 +78,8 @@ onBeforeUnmount(() => {
           <div class="album-title">
             {{ album.name }}
           </div>
-          <NuxtLink class="view-link" @click="viewAlbum(album._id)">
+          <NuxtLink class="view-link" >
+          <!-- @click="viewAlbum(album._id)" -->
             Смотреть фото
           </NuxtLink>
         </a>
