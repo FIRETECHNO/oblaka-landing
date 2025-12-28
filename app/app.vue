@@ -1,4 +1,13 @@
 <script setup lang="ts">
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://oblaka-perm.ru/'
+    }
+  ]
+})
+
 </script>
 <template>
   <NuxtLayout>

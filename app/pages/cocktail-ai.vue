@@ -2,6 +2,9 @@
 definePageMeta({
   layout: "ai"
 })
+useSeoMeta({
+  title: "Облака - ресторан-бар: ИИ-коктейль"
+})
 
 import { useDisplay } from 'vuetify'
 

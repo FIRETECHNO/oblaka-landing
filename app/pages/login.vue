@@ -4,6 +4,9 @@ import { useField, useForm } from 'vee-validate';
 definePageMeta({
   layout: 'admin',
 })
+useSeoMeta({
+  title: "Облака - ресторан-бар: Вход"
+})
 
 const router = useRouter()
 const auth = useAuth()
