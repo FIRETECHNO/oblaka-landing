@@ -16,6 +16,7 @@ const breadcrumbTranslations: { [key: string]: string } = {
   "album": "Альбом",
   "edit": "Редактировать",
   "list": "Список",
+  "upload-kitchen-menu": "Меню Кухни"
 };
 
 const navigationItems: any[] = [

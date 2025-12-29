@@ -19,6 +19,13 @@ const sections: any[] = [
     to: '/admin/album',
     color: 'primary'
   },
+  {
+    title: 'Меню кухни',
+    description: 'Загрузить меню кухни',
+    icon: 'mdi-image-multiple-outline',
+    to: '/admin/upload-kitchen-menu',
+    color: 'primary'
+  },
 ]
 </script>
 

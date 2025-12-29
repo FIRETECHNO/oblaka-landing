@@ -2,6 +2,7 @@
 import { useDisplay } from 'vuetify'
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 
+const router = useRouter()
 const { smAndDown } = useDisplay()
 const menuBarStore = useMenuBar()
 const slider = ref(null)
@@ -77,7 +78,7 @@ onBeforeUnmount(() => {
     </v-col>
 
     <v-col cols="12" class="d-flex justify-center mt-6">
-      <span class="clickable-link" style="margin-right: 10%">Меню</span>
+      <span class="clickable-link" style="margin-right: 10%" @click="router.push('/kitchen-menu')">Меню Кухни</span>
       <span class="clickable-link" style="margin-left: 10%">Бар</span>
     </v-col>
   </v-row>

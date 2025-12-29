@@ -45,6 +45,24 @@ const viewAlbum = (id) => {
   router.push(`/album/${id}`)
 }
 
+function next() {
+  slider.value.scrollBy(
+    {
+      left: smAndDown.value ? 280 * 3 : 585 * 3,
+      behavior: 'smooth'
+    }
+  )
+}
+
+function prev() {
+  slider.value.scrollBy(
+    {
+      left: smAndDown.value ? -280 * 3 : -585 * 3,
+      behavior: 'smooth'
+    }
+  )
+}
+
 onMounted(async () => {
   await albumStore.getAlbums()
   if (albumStore.albums.value.length === 0) return
@@ -69,22 +87,27 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="slider" class="slider" :style="{ height: slideHeight + 'px' }">
-    <div class="slide-track">
-      <div v-for="album in duplicatedAlbums" :key="album._id" class="slide">
-        <a class="slide-content" :href="`https://vk.com/album-50103584_${album._id}`" target="_blank">
-          <v-img :src="album.previewImage" :draggable="false" :aspect-ratio="585 / 591" cover class="slide-image"
-            loading="lazy" />
-          <div class="album-title">
-            {{ album.name }}
-          </div>
-          <NuxtLink class="view-link" >
-          <!-- @click="viewAlbum(album._id)" -->
-            Смотреть фото
-          </NuxtLink>
-        </a>
+  <div style="position: relative; width: 95vw;">
+    <v-btn icon="mdi-arrow-left" class="back-button" @click="prev"></v-btn>
+    <div ref="slider" class="slider" :style="{ height: slideHeight + 'px' }">
+
+      <div class="slide-track">
+        <div v-for="album in duplicatedAlbums" :key="album._id" class="slide">
+          <a class="slide-content" :href="`https://vk.com/album-50103584_${album._id}`" target="_blank">
+            <v-img :src="album.previewImage" :draggable="false" :aspect-ratio="585 / 591" cover class="slide-image"
+              loading="lazy" />
+            <div class="album-title">
+              {{ album.name }}
+            </div>
+            <NuxtLink class="view-link">
+              <!-- @click="viewAlbum(album._id)" -->
+              Смотреть фото
+            </NuxtLink>
+          </a>
+        </div>
       </div>
     </div>
+    <v-btn icon="mdi-arrow-right" class="next-button" @click="next"></v-btn>
   </div>
 </template>
 
@@ -97,6 +120,20 @@ onBeforeUnmount(() => {
   position: relative;
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.next-button {
+  position: absolute;
+  right: 10px;
+  z-index: 1000;
+  top: calc(50% - 24px)
+}
+
+.back-button {
+  position: absolute;
+  left: 10px;
+  z-index: 1000;
+  top: calc(50% - 24px)
 }
 
 .slider::-webkit-scrollbar {
