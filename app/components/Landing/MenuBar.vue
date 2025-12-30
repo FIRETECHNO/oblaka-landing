@@ -77,9 +77,21 @@ onBeforeUnmount(() => {
       </div>
     </v-col>
 
-    <v-col cols="12" class="d-flex justify-center mt-6">
-      <span class="clickable-link" style="margin-right: 10%" @click="router.push('/kitchen-menu')">Меню Кухни</span>
-      <span class="clickable-link" style="margin-left: 10%">Бар</span>
+    <v-col cols="12" class="d-flex justify-center mt-6 mx-4">
+      <v-row>
+        <v-col cols="6" md="3" class="d-flex justify-center align-center my-4 my-md-0">
+          <span class="clickable-link" @click="router.push('/kitchen-menu')">Меню Кухни</span>
+        </v-col>
+        <v-col cols="6" md="3" class="d-flex justify-center align-center my-4 my-md-0">
+          <span class="clickable-link" @click="router.push('/hookah')">Меню Пара</span>
+        </v-col>
+        <v-col cols="6" md="3" class="d-flex justify-center align-center my-4 my-md-0">
+          <span class="clickable-link" @click="router.push('/banquet-menu')">Банкетное меню</span>
+        </v-col>
+        <v-col cols="6" md="3" class="d-flex justify-center align-center my-4 my-md-0">
+          <span class="clickable-link" @click="router.push('/bar')">Карта Бара</span>
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>

@@ -1,4 +1,4 @@
-export const useAdminPhotos = (folder: 'kitchen-menu' | 'bar') => {
+export const useAdminPhotos = (folder: 'kitchen-menu' | 'bar' | "hookah" | "banquet") => {
   const uploading = ref(false)
   const uploadedCount = ref(0)
   const totalFiles = ref(0)

@@ -26,6 +26,27 @@ const sections: any[] = [
     to: '/admin/upload-kitchen-menu',
     color: 'primary'
   },
+  {
+    title: 'Карта Бара',
+    description: 'Загрузить страницы Бара',
+    icon: 'mdi-image-multiple-outline',
+    to: '/admin/upload-bar',
+    color: 'primary'
+  },
+  {
+    title: 'Банкетное меню',
+    description: 'Загрузить страницы Банкетного меню',
+    icon: 'mdi-image-multiple-outline',
+    to: '/admin/upload-banquet',
+    color: 'primary'
+  },
+  {
+    title: 'Меню пара',
+    description: 'Загрузить страницы Меню Пара',
+    icon: 'mdi-image-multiple-outline',
+    to: '/admin/upload-hookah',
+    color: 'primary'
+  },
 ]
 </script>
 
