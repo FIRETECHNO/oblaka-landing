@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { useSmoothScroll } from '~/composables/useSmoothScroll'
+
 const videoRef = ref<HTMLVideoElement | null>(null)
 
 const { scrollToId } = useSmoothScroll()
 
 function handleScroll(id: string) {
+  console.log(id);
+
   scrollToId(id, 100)
 }
 
@@ -69,7 +73,7 @@ onMounted(() => {
                 </v-col>
 
                 <v-col cols="4" class="d-lg-flex d-none justify-center">
-                  <v-btn class="rounded-xl" min-height="100" block>
+                  <v-btn class="rounded-xl" min-height="100" @click="handleScroll('book-form-oblaka-scheme')" block>
                     <h2><b>Хочу в облака!</b></h2>
                   </v-btn>
                 </v-col>
@@ -108,7 +112,6 @@ onMounted(() => {
   </v-col>
 
   <!-- ===== Бронирование секция ===== -->
-  <div id="book-form-oblaka-scheme"></div>
   <v-col class="d-flex flex-column align-space-between full-height-block" cols="12">
     <v-img src="/images/booking.png" class="h-100 d-flex justify-center align-center" draggable="false" cover>
       <v-row class="d-flex justify-space-around align-center my-8 my-md-0 full-height-block">
@@ -116,14 +119,14 @@ onMounted(() => {
           <v-img src="/images/map.svg" draggable="false" cover class="ma-2" />
         </v-col>
 
-        <v-col cols="11" md="6" lg="4">
+        <v-col cols="11" md="6" lg="4" id="book-form-oblaka-scheme">
           <div class="d-flex justify-space-around flex-column h-100 ma-2">
             <div>
               <h2>Забронируйте стол <br /> в Облаках</h2>
             </div>
 
             <div class="d-flex flex-column align-center">
-              <v-text-field variant="solo-filled" bg-color="primary" base-color="#000000" placeholder="ФИО" rounded
+              <v-text-field variant="solo-filled" bg-color="primary" base-color="#000000" placeholder="Имя" rounded
                 class="w-100" />
 
               <v-text-field variant="solo-filled" bg-color="primary" placeholder="Телефон" rounded class="w-100" />
@@ -154,7 +157,8 @@ onMounted(() => {
 
     <v-row class="d-flex justify-center mt-16">
       <v-col cols="11" md="6" lg="4" xl="3">
-        <v-btn base-color="primary" class="rounded-xl" min-height="100" block>
+        <v-btn base-color="primary" class="rounded-xl" min-height="100" block
+          @click="handleScroll('book-form-oblaka-scheme')">
           <h2>Забронировать стол</h2>
         </v-btn>
       </v-col>

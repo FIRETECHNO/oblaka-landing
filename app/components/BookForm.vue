@@ -2,7 +2,7 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <v-text-field variant="solo-filled" bg-color="primary" base-color="#000000" placeholder="ФИО" rounded
+      <v-text-field variant="solo-filled" bg-color="primary" base-color="#000000" placeholder="Имя" rounded
         class="w-100">
         <template v-slot:prepend-inner>
           <div class="mr-8"></div>
