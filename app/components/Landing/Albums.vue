@@ -90,7 +90,6 @@ onBeforeUnmount(() => {
   <div style="position: relative; width: 95vw;">
     <v-btn icon="mdi-arrow-left" class="back-button" @click="prev"></v-btn>
     <div ref="slider" class="slider" :style="{ height: slideHeight + 'px' }">
-
       <div class="slide-track">
         <div v-for="album in duplicatedAlbums" :key="album._id" class="slide">
           <a class="slide-content" :href="`https://vk.com/album-50103584_${album._id}`" target="_blank">
@@ -100,7 +99,6 @@ onBeforeUnmount(() => {
               {{ album.name }}
             </div>
             <NuxtLink class="view-link">
-              <!-- @click="viewAlbum(album._id)" -->
               Смотреть фото
             </NuxtLink>
           </a>
@@ -126,14 +124,14 @@ onBeforeUnmount(() => {
   position: absolute;
   right: 10px;
   z-index: 1000;
-  top: calc(50% - 24px)
+  top: calc(50% - 24px);
 }
 
 .back-button {
   position: absolute;
   left: 10px;
   z-index: 1000;
-  top: calc(50% - 24px)
+  top: calc(50% - 24px);
 }
 
 .slider::-webkit-scrollbar {
@@ -159,20 +157,29 @@ onBeforeUnmount(() => {
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
 }
 
 .slide-image {
   border-radius: 8px;
   filter: grayscale(100%);
-  /* ← ч/б изображение */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
 
-/* Название альбома — белый текст сверху */
 .album-title {
-  position: absolute;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  z-index: 1;
   font-size: clamp(1.125rem, 0.7273rem + 1.1364vw, 1.625rem);
   font-weight: 500;
   text-align: center;
@@ -181,22 +188,21 @@ onBeforeUnmount(() => {
   overflow: hidden;
   text-overflow: ellipsis;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-  /* для лучшей читаемости на светлых фото */
   pointer-events: none;
-  /* чтобы не мешал кликам на ссылку */
+  margin: 0;
+  padding-top: 16px;
+  color: white;
 }
 
-/* Ссылка снизу — подчёркнутый белый текст */
 .view-link {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  // color: white;
+  position: relative;
+  z-index: 1;
   text-decoration: underline !important;
   font-size: clamp(0.875rem, 0.3778rem + 1.4205vw, 1.5rem);
   font-weight: 500;
   cursor: pointer;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  padding-bottom: 20px;
+  color: white;
 }
 </style>
