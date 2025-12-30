@@ -50,6 +50,8 @@ export function useCocktailAi() {
 
       nextStep("result")
     } catch (error) {
+      console.log(error);
+
       toast.error("Ошибка при запросе")
     }
   }

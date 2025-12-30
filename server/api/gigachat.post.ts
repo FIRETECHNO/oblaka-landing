@@ -83,6 +83,8 @@ async function getAccessToken(): Promise<string> {
 
 export default defineEventHandler(async (event) => {
   try {
+    console.log("AUTH_KEY", AUTH_KEY);
+
     if (!AUTH_KEY) {
       setResponseStatus(event, 500)
       return { error: 'GIGACHAT_AUTH_KEY not configured' }
@@ -90,6 +92,7 @@ export default defineEventHandler(async (event) => {
 
     const body = await readBody<GigachatRequestBody>(event)
     const prompt = body?.prompt
+    console.log(prompt);
 
     if (!prompt || typeof prompt !== 'string') {
       setResponseStatus(event, 400)
