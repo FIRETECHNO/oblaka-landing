@@ -30,6 +30,7 @@ export default defineNuxtPlugin((nuxtApp) => {
             primary: '#FFFFFF',
             secondary: '#FFFFFF',
             info: '#FFFFFF',
+            // error: "#FFFFFF"
           }
         },
       },

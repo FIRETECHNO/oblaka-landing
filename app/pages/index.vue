@@ -5,11 +5,54 @@ const videoRef = ref<HTMLVideoElement | null>(null)
 
 const { scrollToId } = useSmoothScroll()
 
+const bookFormStore = useBookForm()
+
+let form = reactive<{
+  name: string,
+  phone: string,
+  date: string
+}>({
+  name: '',
+  phone: '',
+  date: '',
+})
+
+let agreement = ref(false)
+
+// ===== ВАЛИДАЦИЯ =====
+const isPhoneValid = computed(() => {
+  // Простой паттерн: +7 или 8 и 10 цифр
+  const phone = form.phone.replace(/\D/g, '')
+  return phone.length === 11 && (phone.startsWith('7') || phone.startsWith('8'))
+})
+
+const isDateValid = computed(() => {
+  if (!form.date) return false
+  const date = new Date(form.date)
+  // Проверка на корректность даты + будущее время
+  return date instanceof Date && !isNaN(date.getTime()) && date >= new Date()
+})
+
+const isFormValid = computed(() => {
+  return (
+    form.name.trim().length > 0 &&
+    isPhoneValid.value &&
+    isDateValid.value
+  )
+})
+
+const canSubmit = computed(() => agreement.value && isFormValid.value)
+
 function handleScroll(id: string) {
   console.log(id);
 
   scrollToId(id, 100)
 }
+
+async function sendForm() {
+  await bookFormStore.sendForm(form.name, form.phone, form.date)
+}
+
 
 
 onMounted(() => {
@@ -126,16 +169,20 @@ onMounted(() => {
             </div>
 
             <div class="d-flex flex-column align-center">
-              <v-text-field variant="solo-filled" bg-color="primary" base-color="#000000" placeholder="Имя" rounded
+              <v-text-field v-model="form.name" variant="solo-filled" bg-color="primary" base-color="#000000"
+                placeholder="Имя" rounded class="w-100" />
+
+              <v-text-field v-model="form.phone" variant="solo-filled" bg-color="primary" placeholder="Телефон" rounded
+                class="w-100" :error="form.phone !== '' && !isPhoneValid"
+                :error-messages="form.phone !== '' && !isPhoneValid ? 'Неверный формат телефона' : ''" />
+
+              <v-text-field v-model="form.date" variant="solo-filled" bg-color="primary" placeholder="Дата" rounded
                 class="w-100" />
 
-              <v-text-field variant="solo-filled" bg-color="primary" placeholder="Телефон" rounded class="w-100" />
+              <v-checkbox v-model="agreement" label="Согласие на обработку персональных данных" />
 
-              <v-text-field variant="solo-filled" bg-color="primary" placeholder="Дата" rounded class="w-100" />
-
-              <v-checkbox label="Согласие на обработку персональных данных" />
-
-              <v-btn base-color="primary" class="rounded-xl" block min-height="100" @click="handleScroll('')">
+              <v-btn :disabled="!canSubmit" base-color="primary" class="rounded-xl" block min-height="100"
+                @click="sendForm">
                 <h2>Отправить заявку</h2>
               </v-btn>
             </div>
