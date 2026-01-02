@@ -7,7 +7,7 @@
           <span class="info-text">
             <NuxtLink to="https://yandex.ru/maps/-/CLwMjKIO" class="text-underline" target="_blank">
               г. Пермь
-              ул. Ленина, 88
+              ул. Ленина, 88,
               6 этаж
             </NuxtLink>
             <br><br>
