@@ -2,60 +2,15 @@
 import { useDisplay } from 'vuetify'
 
 const { smAndDown } = useDisplay()
-
+const posterStore = usePoster()
 // import useImages from '../composables'
 
-let links = ref([
-    {
-        images: ["/images/1.png"],
-        eventDate: "09.08.2025",
-        markdownText: "Lorem"
-    },
-    {
-        images: ["/images/2.png"],
-        eventDate: "09.08.2025",
-        markdownText: "Ipsum"
-    },
-    {
-        images: ["/images/3.png"],
-        eventDate: "09.08.2025",
-        markdownText: "Dolor"
-    },
-    {
-        images: ["/images/4.png"],
-        eventDate: "09.08.2025",
-        markdownText: "Lorem"
-    },
-    {
-        images: ["/images/5.png"],
-        eventDate: "09.08.2025",
-        markdownText: "Ipsum"
-    },
-    {
-        images: ["/images/6.png"],
-        eventDate: "09.08.2025",
-        markdownText: "Dolor"
-    },
-    {
-        images: ["/images/7.png"],
-        eventDate: "09.08.2025",
-        markdownText: "Lorem"
-    },
-    {
-        images: ["/images/8.png"],
-        eventDate: "09.08.2025",
-        markdownText: "Ipsum"
-    },
-    {
-        images: ["/images/9.png"],
-        eventDate: "09.08.2025",
-        markdownText: "Dolor"
-    },
-]);
+let { posters } = posterStore;
+
 const slider = useTemplateRef('slider')
 
 
-const amount = ref(links.value.length)
+const amount = computed(() => posters.value.length)
 const animationTime = ref(`${amount.value * 10}s`);
 const offset = ref(`${(amount.value - 1) * 4}px`);
 const width = ref(smAndDown.value ? '280px' : '585px');
@@ -83,7 +38,10 @@ watch(smAndDown, () => {
     width.value = smAndDown.value ? '280px' : '585px'
     height.value = smAndDown.value ? '300px' : '598px'
 })
-onMounted(() => {
+
+
+onMounted(async () => {
+    await posterStore.getAllPosters()
     setInterval(() => {
         slider.value.scrollBy(
             {
@@ -101,11 +59,11 @@ onMounted(() => {
             <div class="slide-track">
                 <v-btn icon="mdi-arrow-left" class="back-button" @click="prev"></v-btn>
 
-                <div class="slide mr-2 ml-2" v-for="image in links">
-                    <v-img :src="image.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
+                <div class="slide mr-2 ml-2" v-for="(poster, index) in posters" :key="index">
+                    <v-img :src="poster.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
                 </div>
-                <div class="slide mr-2 ml-2" v-for="image in links">
-                    <v-img :src="image.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
+                <div v-if="amount > 4" class="slide mr-2 ml-2" v-for="(poster, index) in posters" :key="index">
+                    <v-img :src="poster.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
                 </div>
 
                 <v-btn icon="mdi-arrow-right" class="next-button" @click="next"></v-btn>

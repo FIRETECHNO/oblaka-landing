@@ -56,6 +56,21 @@ export function useAdminPoster() {
     }
   }
 
+  async function deletePoster(_id: string) {
+    try {
+      let res = await PosterApi.deletePoster(_id)
+
+      for (let i = 0; i < posters.value.length; i++) {
+        if (posters.value[i]?._id == _id) {
+          posters.value.splice(i, 1)
+          break;
+        }
+      }
+    } catch (error) {
+      console.log("useAdminPoster/deletePoster", error);
+    }
+  }
+
   return {
     // vars
     posters,
@@ -63,6 +78,7 @@ export function useAdminPoster() {
     createPoster,
     getPosters,
     getPosterById,
-    edit
+    edit,
+    deletePoster
   }
 }

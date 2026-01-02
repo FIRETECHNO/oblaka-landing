@@ -25,7 +25,9 @@ let poster = ref<IPosterDb>({
   images: [],
   markdownText: "",
   eventDate: "",
-  _id: ""
+  _id: "",
+  createdAt: "",
+  updatedAt: ""
 });
 
 
@@ -74,7 +76,7 @@ const uploadPoster = async (upload: boolean) => {
 
   uploading.value = true
 
-  const blobToUpload = croppedBlob.value ?? file.value
+  const blobToUpload: any = croppedBlob.value ?? file.value
 
   const uploadFile = blobToUpload instanceof File
     ? blobToUpload
@@ -124,6 +126,13 @@ onBeforeUnmount(() => {
 </script>
 <template>
   <v-container class="py-8">
+    <v-row class="mb-8">
+      <v-col cols="12">
+        <BackButton />
+      </v-col>
+    </v-row>
+
+
     <v-row>
       <v-col cols="12" md="6">
         <v-file-input v-model="file" label="Загрузить обложку" accept="image/*" prepend-icon="mdi-image"

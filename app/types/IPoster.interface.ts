@@ -6,4 +6,6 @@ export interface IPoster {
 
 export interface IPosterDb extends IPoster {
   _id: string
+  createdAt: string
+  updatedAt: string
 }
