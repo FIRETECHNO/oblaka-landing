@@ -40,7 +40,7 @@
 .image-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url("/images/book-form-happy-bday.webp");
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: right bottom;
   background-size: cover;
 }
 </style>
