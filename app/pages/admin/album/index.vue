@@ -7,10 +7,17 @@ definePageMeta({
 
 const sections: any[] = [
   {
-    title: 'Все альбомы',
-    description: 'Удалить и редактировать альбомы',
+    title: 'Все альбомы для исключения',
+    description: 'Список исключений',
     icon: 'mdi-image-album',
     to: '/admin/album/list',
+    color: 'primary'
+  },
+    {
+    title: 'Добавить альбом для исключения',
+    description: 'Удалить исключения',
+    icon: 'mdi-image-album',
+    to: '/admin/album/upload',
     color: 'primary'
   },
 ]

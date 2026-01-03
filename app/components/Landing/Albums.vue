@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 
 const { smAndDown } = useDisplay()
 const albumStore = useAdminAlbum()
+const evadeAlbums = ref([""])
 const slider = ref(null)
 const router = useRouter()
 
@@ -13,7 +14,10 @@ const slideHeight = computed(() => smAndDown.value ? 300 : 598)
 
 const duplicatedAlbums = computed(() => {
   const list = albumStore.albums.value
-  return [...list, ...list]
+  let toFilter = evadeAlbums.value
+  console.log(toFilter)
+  const filteredList = list.filter(album => !toFilter.includes(`https://vk.com/album-50103584_${album._id}`))
+  return [...filteredList, ...filteredList]
 })
 
 let scrollInterval = null
@@ -65,6 +69,9 @@ function prev() {
 
 onMounted(async () => {
   await albumStore.getAlbums()
+  let res = await useAdminAlbum().getAlbumsToEvade()
+  evadeAlbums.value = res.map(item=>item.url)
+
   if (albumStore.albums.value.length === 0) return
   startAutoScroll()
 
