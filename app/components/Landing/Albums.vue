@@ -15,7 +15,6 @@ const slideHeight = computed(() => smAndDown.value ? 300 : 598)
 const duplicatedAlbums = computed(() => {
   const list = albumStore.albums.value
   let toFilter = evadeAlbums.value
-  console.log(toFilter)
   const filteredList = list.filter(album => !toFilter.includes(`https://vk.com/album-50103584_${album._id}`))
   return [...filteredList, ...filteredList]
 })
