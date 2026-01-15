@@ -54,7 +54,7 @@ onMounted(async () => {
 // console.log(offset,width)
 </script>
 <template>
-    <div style="position: relative">
+    <div v-if="posters.length > 0" style="position: relative">
         <div class="slider" ref="slider">
             <div class="slide-track">
                 <v-btn icon="mdi-arrow-left" class="back-button" @click="prev"></v-btn>
@@ -69,6 +69,9 @@ onMounted(async () => {
                 <v-btn icon="mdi-arrow-right" class="next-button" @click="next"></v-btn>
             </div>
         </div>
+    </div>
+    <div v-else class="d-flex justify-center">
+        Афиши скоро появятся
     </div>
 </template>
 <style scoped lang="scss">

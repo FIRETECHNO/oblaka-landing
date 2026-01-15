@@ -16,7 +16,7 @@ const uploading = ref(false)
 
 const uploadPoster = async () => {
   try {
-    await adminAlbumStore.createAlbumToEvade({ url:name.value })
+    await adminAlbumStore.createAlbumToEvade({ url: name.value })
   }
   catch (error) {
     console.error('Upload failed', error)
@@ -30,7 +30,7 @@ const uploadPoster = async () => {
   <v-container class="py-8">
     <v-row>
       <v-col cols="12" md="6">
-        <h2 class="font-bold mb-2">Название</h2>
+        <h2 class="font-bold mb-2">Ссылка на альбом</h2>
         <v-text-field v-model="name" variant="outlined" density="comfortable"></v-text-field>
       </v-col>
     </v-row>
