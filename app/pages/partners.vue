@@ -91,7 +91,7 @@ function open(link: string) {
   <v-row>
     <v-col cols="6" sm="4" md="3" lg="2" v-for="(o, index) in partners" :key="index"
       class="d-flex justify-center align-center">
-      <v-img :src="o.image" class="ma-5 cursor-pointer" @click="open(o.link)" />
+      <v-img :src="o.image" class="ma-5 cursor-pointer" style="border-radius: 6px;" @click="open(o.link)" />
     </v-col>
   </v-row>
 </template>
