@@ -22,7 +22,9 @@
             </NuxtLink>
 
             <br><br>
-            Партнеры
+            <NuxtLink to="/partners" class="text-underline">
+              Партнеры
+            </NuxtLink>
           </span>
 
         </v-col>
