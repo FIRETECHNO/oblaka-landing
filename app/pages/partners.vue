@@ -1,5 +1,5 @@
 <script setup lang="ts">
-let partners = ref<{ link: string, image: string }[]>([
+let partners = ref<{ link: string, image: string, bgColor?: string }[]>([
   {
     "image": "https://oblaka-images.storage.yandexcloud.net/partners/romantic.png",
     "link": "https://t.me/romantic_perm"
@@ -14,7 +14,8 @@ let partners = ref<{ link: string, image: string }[]>([
   },
   {
     "image": "https://oblaka-images.storage.yandexcloud.net/partners/escobar.jpg",
-    "link": "https://t.me/escobarperm59"
+    "link": "https://t.me/escobarperm59",
+    bgColor: "white"
   },
   {
     "image": "https://oblaka-images.storage.yandexcloud.net/partners/magic-project.png",
@@ -30,7 +31,8 @@ let partners = ref<{ link: string, image: string }[]>([
   },
   {
     "image": "https://oblaka-images.storage.yandexcloud.net/partners/med-dent.png",
-    "link": "https://vk.com/med_dent"
+    "link": "https://vk.com/med_dent",
+    bgColor: "white"
   },
   {
     "image": "https://oblaka-images.storage.yandexcloud.net/partners/rollin.jpg",
@@ -38,7 +40,8 @@ let partners = ref<{ link: string, image: string }[]>([
   },
   {
     "image": "https://oblaka-images.storage.yandexcloud.net/partners/kaifa.svg",
-    "link": "https://dostavkakaifa.ru/"
+    "link": "https://dostavkakaifa.ru/",
+    bgColor: "white"
   },
   {
     "image": "https://oblaka-images.storage.yandexcloud.net/partners/ch-perm.jpg",
@@ -70,7 +73,8 @@ let partners = ref<{ link: string, image: string }[]>([
   },
   {
     "image": "https://oblaka-images.storage.yandexcloud.net/partners/green-line.png",
-    "link": "https://greenlinestudio.ru/"
+    "link": "https://greenlinestudio.ru/",
+    bgColor: "white"
   },
   {
     "image": "https://oblaka-images.storage.yandexcloud.net/partners/var-var.png",
@@ -91,7 +95,9 @@ function open(link: string) {
   <v-row>
     <v-col cols="6" sm="4" md="3" lg="2" v-for="(o, index) in partners" :key="index"
       class="d-flex justify-center align-center">
-      <v-img :src="o.image" class="ma-5 cursor-pointer" style="border-radius: 6px;" @click="open(o.link)" />
+      <div :style="{ backgroundColor: o.bgColor ?? '' }" class="w-100 h-90" style="border-radius: 6px;">
+        <v-img :src="o.image" class="ma-5 pa-5 cursor-pointer" style="border-radius: 6px;" @click="open(o.link)" />
+      </div>
     </v-col>
   </v-row>
 </template>
