@@ -76,7 +76,7 @@ onMounted(() => {
         <ClientOnly>
           <video ref="videoRef" autoplay loop muted playsinline preload="none" poster="/images/first-section-poster.png"
             class="hero-video">
-            <source src="/images/first-section.mp4" type="video/mp4" />
+            <source src="https://storage.yandexcloud.net/oblaka-images/first-section.mp4" type="video/mp4" />
             <!-- <source src="/videos/first-section.webm" type="video/webm" /> -->
           </video>
         </ClientOnly>
@@ -91,7 +91,6 @@ onMounted(() => {
                   <div class="d-flex align-start flex-column w-50">
                     <span>Режим работы:</span>
                     <span>ПТ-СБ – с 23:00 до 6:00</span><br />
-                    <span>С 1 декабря – ежедневно</span>
                   </div>
                 </v-col>
               </v-row>
