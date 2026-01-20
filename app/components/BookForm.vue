@@ -2,6 +2,7 @@
 import { reactive, computed, ref } from 'vue'
 
 const bookFormStore = useBookForm()
+const router = useRouter()
 
 const form = reactive({
   name: '',
@@ -76,7 +77,13 @@ async function handleSubmit() {
         </template>
       </v-text-field>
 
-      <v-checkbox v-model="agreement" label="Согласие на обработку персональных данных" hide-details="auto" />
+      <div class="d-flex align-center cursor-pointer" @click="agreement = !agreement">
+        <v-checkbox v-model="agreement" hide-details="auto" class="mr-2" />
+        <p class="personal-data-agreement-link" @click.stop="router.push('/personal-data')">
+          Согласие на обработку персональных
+          данных
+        </p>
+      </div>
 
       <v-btn :disabled="!canSubmit" base-color="primary" class="rounded-xl" block min-height="100"
         @click="handleSubmit">

@@ -70,6 +70,11 @@ h2 {
 .md-editor .cm-editor {
   font-size: 18px !important;
 }
-.md-editor-preview{
+.md-editor-preview {
   font-size: 18px !important;
+}
+.personal-data-agreement-link {
+  font-size: clamp(1rem, 0.8011rem + 0.5682vw, 1.25rem);
+  user-select: none;
+  text-decoration: underline;
 }

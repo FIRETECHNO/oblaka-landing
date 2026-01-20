@@ -6,6 +6,7 @@ const videoRef = ref<HTMLVideoElement | null>(null)
 const { scrollToId } = useSmoothScroll()
 
 const bookFormStore = useBookForm()
+const router = useRouter()
 
 let form = reactive<{
   name: string,
@@ -178,7 +179,13 @@ onMounted(() => {
               <v-text-field v-model="form.date" variant="solo-filled" bg-color="primary" placeholder="Дата" rounded
                 class="w-100" />
 
-              <v-checkbox v-model="agreement" label="Согласие на обработку персональных данных" />
+              <div class="d-flex align-center cursor-pointer w-100 my-2" @click="agreement = !agreement">
+                <v-checkbox v-model="agreement" hide-details="auto" class="mr-2" />
+                <p class="personal-data-agreement-link" @click.stop="router.push('/personal-data')">
+                  Согласие на обработку персональных
+                  данных
+                </p>
+              </div>
 
               <v-btn :disabled="!canSubmit" base-color="primary" class="rounded-xl" block min-height="100"
                 @click="sendForm">
