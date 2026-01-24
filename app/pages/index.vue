@@ -1,4 +1,22 @@
 <script setup lang="ts">
+import flatPickr from 'vue-flatpickr-component'
+import 'flatpickr/dist/flatpickr.css'
+// Опционально: тема (можно удалить и писать свою)
+// import 'flatpickr/dist/themes/material_blue.css'
+
+// Локаль для русского языка
+import { Russian } from 'flatpickr/dist/l10n/ru.js'
+
+const dateConfig = {
+  locale: Russian,
+  dateFormat: 'd F Y', // отображение: "25 января 2026"
+  altInput: true,      // создаёт скрытый input с ISO-датой, а показывает красивую
+  altFormat: 'Y-m-d',  // формат для v-model (если altInput: true)
+  allowInput: false,
+  clickOpens: true,
+  wrap: false
+}
+
 import { useSmoothScroll } from '~/composables/useSmoothScroll'
 
 const videoRef = ref<HTMLVideoElement | null>(null)
@@ -29,9 +47,7 @@ const isPhoneValid = computed(() => {
 
 const isDateValid = computed(() => {
   if (!form.date) return false
-  const date = new Date(form.date)
-  // Проверка на корректность даты + будущее время
-  return date instanceof Date && !isNaN(date.getTime()) && date >= new Date()
+  return true;
 })
 
 const isFormValid = computed(() => {
@@ -171,14 +187,28 @@ onMounted(() => {
 
             <div class="d-flex flex-column align-center">
               <v-text-field v-model="form.name" variant="solo-filled" bg-color="primary" base-color="#000000"
-                placeholder="Имя" rounded class="w-100" />
+                placeholder="Имя" rounded class="w-100">
+                <template v-slot:prepend-inner>
+                  <div class="mr-8"></div>
+                </template>
+              </v-text-field>
+
 
               <v-text-field v-model="form.phone" variant="solo-filled" bg-color="primary" placeholder="Телефон" rounded
                 class="w-100" :error="form.phone !== '' && !isPhoneValid"
-                :error-messages="form.phone !== '' && !isPhoneValid ? 'Неверный формат телефона' : ''" />
+                :error-messages="form.phone !== '' && !isPhoneValid ? 'Неверный формат телефона' : ''">
+                <template v-slot:prepend-inner>
+                  <div class="mr-8"></div>
+                </template>
+              </v-text-field>
 
-              <v-text-field v-model="form.date" variant="solo-filled" bg-color="primary" placeholder="Дата" rounded
-                class="w-100" />
+              <!-- <v-text-field v-model="form.date" variant="solo-filled" bg-color="primary" placeholder="Дата" rounded
+                class="w-100" /> -->
+
+              <ClientOnly>
+                <flat-pickr v-model="form.date" :config="dateConfig" class="custom-datepicker w-100" placeholder="Дата"
+                  :error="!isDateValid && form.date !== ''" />
+              </ClientOnly>
 
               <div class="d-flex align-center cursor-pointer w-100 my-2" @click="agreement = !agreement">
                 <v-checkbox v-model="agreement" hide-details="auto" class="mr-2" />

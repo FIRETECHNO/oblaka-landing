@@ -55,6 +55,22 @@ h2 {
   font-weight: 400;
   font-size: clamp(1.25rem, 0.7528rem + 1.4205vw, 1.875rem);
 }
+
+.v-select input::placeholder {
+  opacity: 1 !important;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 0.7528rem + 1.4205vw, 1.875rem);
+}
+.v-select:hover input::placeholder {
+  opacity: 0.55 !important;
+  transition: opacity 0.3s ease-in-out;
+}
+.v-select input {
+  color: black;
+  opacity: 1;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 0.7528rem + 1.4205vw, 1.875rem);
+}
 .v-checkbox label {
   font-size: clamp(1.125rem, 0.8267rem + 0.8523vw, 1.5rem);
   font-weight: 300;
@@ -77,4 +93,14 @@ h2 {
   font-size: clamp(1rem, 0.8011rem + 0.5682vw, 1.25rem);
   user-select: none;
   text-decoration: underline;
+}
+.custom-datepicker {
+  background-color: white;
+  color: black;
+  height: 80px !important;
+  border-radius: 18px;
+  padding-left: 50px;
+  opacity: 1 !important;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 0.7528rem + 1.4205vw, 1.875rem);
 }
