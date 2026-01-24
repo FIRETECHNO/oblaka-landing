@@ -12,14 +12,16 @@
             </NuxtLink>
             <br><br>
             Режим работы: <br>
-            ПТ-СБ – с 23:00 до 6:00. <br>
-            С 1 декабря - сборные корпоративы
+            ПТ-СБ – с 23:00 до 5:00. <br>
             <br><br>
             Контакты <br>
             <!-- 288-81-89 <br> -->
             <NuxtLink to="https://t.me/oblaka_159" target="_blank" class="text-underline">
               @oblaka_159
-            </NuxtLink>
+            </NuxtLink> – Telegram-канал<br><br>
+            <NuxtLink to="https://t.me/oblaka_perm_help" target="_blank" class="text-underline">
+              @oblaka_perm_help
+            </NuxtLink> – бронь столиков
 
             <br><br>
             <NuxtLink to="/partners" class="text-underline">

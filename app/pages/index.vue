@@ -91,7 +91,7 @@ onMounted(() => {
                 <v-col cols="12" class="d-flex">
                   <div class="d-flex align-start flex-column w-50">
                     <span>Режим работы:</span>
-                    <span>ПТ-СБ – с 23:00 до 6:00</span><br />
+                    <span>ПТ-СБ – с 23:00 до 5:00</span><br />
                   </div>
                 </v-col>
               </v-row>
@@ -106,7 +106,7 @@ onMounted(() => {
               <!-- Адрес + кнопка + бронь -->
               <v-row class="d-flex justify-space-between align-center">
                 <v-col cols="6" md="4" class="d-flex justify-start">
-                  <div class="d-flex align-start flex-column w-50 pa-2">
+                  <div class="d-flex align-start flex-column w-100 w-lg-50 pa-2">
                     <span>ул. Ленина, 88</span>
                     <span>6 этаж</span>
                     <ClientOnly>
@@ -122,10 +122,11 @@ onMounted(() => {
                 </v-col>
 
                 <v-col cols="6" md="4" class="d-flex justify-end">
-                  <div class="d-flex justify-start align-end flex-column w-50 pa-2">
+                  <div class="d-flex justify-start align-end flex-column w-100 w-lg-50 pa-2">
                     <span>Бронь столов:</span>
-                    <span>288-81-89</span>
-                    <span>Telegram</span>
+                    <NuxtLink to="tel:+7342288-81-89" target="_blank" class="text-underline">288-81-89</NuxtLink>
+                    <NuxtLink to="https://t.me/oblaka_perm_help" target="_blank" class="text-underline">
+                      @oblaka_perm_help</NuxtLink>
                   </div>
                 </v-col>
 
@@ -240,6 +241,10 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+.text-underline {
+  text-decoration: underline !important;
+}
+
 /* ===== Видео фон ===== */
 .hero {
   position: relative;
