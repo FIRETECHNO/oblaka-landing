@@ -34,6 +34,12 @@ function prev() {
     )
 }
 
+function goToPage(link) {
+    if (link) {
+        window.open(link, { target: "_blank" })
+    }
+}
+
 watch(smAndDown, () => {
     width.value = smAndDown.value ? '280px' : '585px'
     height.value = smAndDown.value ? '300px' : '598px'
@@ -59,10 +65,12 @@ onMounted(async () => {
             <div class="slide-track">
                 <v-btn icon="mdi-arrow-left" class="back-button" @click="prev"></v-btn>
 
-                <div class="slide mr-2 ml-2" v-for="(poster, index) in posters" :key="index">
+                <div class="slide mr-2 ml-2" v-for="(poster, index) in posters" :key="index"
+                    @click="goToPage(poster.qticketsUrl)">
                     <v-img :src="poster.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
                 </div>
-                <div v-if="amount > 4" class="slide mr-2 ml-2" v-for="(poster, index) in posters" :key="index">
+                <div v-if="amount > 4" class="slide mr-2 ml-2" v-for="(poster, index) in posters" :key="index"
+                    @click="goToPage(poster.qticketsUrl)">
                     <v-img :src="poster.images[0]" :draggable="false" loading="lazy" height="100%" cover></v-img>
                 </div>
 
@@ -98,6 +106,7 @@ onMounted(async () => {
     height: v-bind(height);
     width: v-bind(width);
     background-color: black;
+    cursor: pointer;
 }
 
 .next-button {

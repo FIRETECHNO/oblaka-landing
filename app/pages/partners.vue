@@ -83,6 +83,10 @@ let partners = ref<{ link: string, image: string, bgColor?: string }[]>([
   {
     "image": "https://storage.yandexcloud.net/oblaka-images/partners/firetechno.svg",
     "link": "https://t.me/FireTechnolog"
+  },
+  {
+    "image": "https://storage.yandexcloud.net/oblaka-images/partners/rus-lazer.jpg",
+    "link": "https://vk.com/rus.laser"
   }
 ])
 
