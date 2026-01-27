@@ -26,10 +26,6 @@ let partners = ref<{ link: string, image: string, bgColor?: string }[]>([
     "link": "https://vk.com/severhodba"
   },
   {
-    "image": "https://oblaka-images.storage.yandexcloud.net/partners/connect.jpg",
-    "link": "https://www.connectperm.ru/"
-  },
-  {
     "image": "https://oblaka-images.storage.yandexcloud.net/partners/med-dent.png",
     "link": "https://vk.com/med_dent",
     bgColor: "white"
