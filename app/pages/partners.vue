@@ -96,6 +96,22 @@ let partners = ref<{ link: string, image: string, bgColor?: string }[]>([
     "image": "https://storage.yandexcloud.net/oblaka-images/partners/mol-parlament.jpg",
     "link": "https://vk.ru/molparlamentperm"
   },
+  {
+    image: "https://storage.yandexcloud.net/oblaka-images/partners/climat59.jpg",
+    link: "https://t.me/climat59"
+  },
+  {
+    image: "https://storage.yandexcloud.net/oblaka-images/partners/suntour.png",
+    link: "https://t.me/suntour_59"
+  },
+  {
+    image: "https://storage.yandexcloud.net/oblaka-images/partners/ebisan.jpg",
+    link: "https://t.me/ebisan_perm"
+  },
+  {
+    image: "https://storage.yandexcloud.net/oblaka-images/partners/afisha-perm.jpg",
+    link: "https://t.me/afisha_perm59"
+  },
 ])
 
 function open(link: string) {
