@@ -11,7 +11,7 @@ const dateConfig = {
   locale: Russian,
   dateFormat: 'd F Y', // отображение: "25 января 2026"
   altInput: true,      // создаёт скрытый input с ISO-датой, а показывает красивую
-  altFormat: 'Y-m-d',  // формат для v-model (если altInput: true)
+  altFormat: 'm-d-Y',  // формат для v-model (если altInput: true)
   allowInput: false,
   clickOpens: true,
   wrap: false
@@ -66,8 +66,21 @@ function handleScroll(id: string) {
   scrollToId(id, 100)
 }
 
+function clearForm() {
+  form.date = ""
+  form.name = ""
+  form.phone = ""
+}
+
+let submitCount = ref(0)
 async function sendForm() {
+  if (submitCount.value > 0) return
+  submitCount.value++;
   await bookFormStore.sendForm(form.name, form.phone, form.date)
+
+  clearForm()
+
+  submitCount.value = 0;
 }
 
 
@@ -185,44 +198,44 @@ onMounted(() => {
               <h2>Забронируйте стол <br /> в Облаках</h2>
             </div>
 
-            <div class="d-flex flex-column align-center">
-              <v-text-field v-model="form.name" variant="solo-filled" bg-color="primary" base-color="#000000"
-                placeholder="Имя" rounded class="w-100">
-                <template v-slot:prepend-inner>
-                  <div class="mr-8"></div>
-                </template>
-              </v-text-field>
+            <ClientOnly>
+              <div class="d-flex flex-column align-center">
+                <v-text-field v-model="form.name" variant="solo-filled" bg-color="primary" base-color="#000000"
+                  placeholder="Имя" rounded class="w-100">
+                  <template v-slot:prepend-inner>
+                    <div class="mr-8"></div>
+                  </template>
+                </v-text-field>
 
 
-              <v-text-field v-model="form.phone" variant="solo-filled" bg-color="primary" placeholder="Телефон" rounded
-                class="w-100" :error="form.phone !== '' && !isPhoneValid"
-                :error-messages="form.phone !== '' && !isPhoneValid ? 'Неверный формат телефона' : ''">
-                <template v-slot:prepend-inner>
-                  <div class="mr-8"></div>
-                </template>
-              </v-text-field>
+                <v-text-field v-model="form.phone" variant="solo-filled" bg-color="primary" placeholder="Телефон"
+                  rounded class="w-100" :error="form.phone !== '' && !isPhoneValid"
+                  :error-messages="form.phone !== '' && !isPhoneValid ? 'Неверный формат телефона' : ''">
+                  <template v-slot:prepend-inner>
+                    <div class="mr-8"></div>
+                  </template>
+                </v-text-field>
 
-              <!-- <v-text-field v-model="form.date" variant="solo-filled" bg-color="primary" placeholder="Дата" rounded
+                <!-- <v-text-field v-model="form.date" variant="solo-filled" bg-color="primary" placeholder="Дата" rounded
                 class="w-100" /> -->
 
-              <ClientOnly>
                 <flat-pickr v-model="form.date" :config="dateConfig" class="custom-datepicker w-100" placeholder="Дата"
                   :error="!isDateValid && form.date !== ''" />
-              </ClientOnly>
 
-              <div class="d-flex align-center cursor-pointer w-100 my-2" @click="agreement = !agreement">
-                <v-checkbox v-model="agreement" hide-details="auto" class="mr-2" />
-                <p class="personal-data-agreement-link" @click.stop="router.push('/personal-data')">
-                  Согласие на обработку персональных
-                  данных
-                </p>
+                <div class="d-flex align-center cursor-pointer w-100 my-2" @click="agreement = !agreement">
+                  <v-checkbox v-model="agreement" hide-details="auto" class="mr-2" />
+                  <p class="personal-data-agreement-link" @click.stop="router.push('/personal-data')">
+                    Согласие на обработку персональных
+                    данных
+                  </p>
+                </div>
+
+                <v-btn :disabled="!canSubmit" base-color="primary" class="rounded-xl" block min-height="100"
+                  @click="sendForm">
+                  <h2>Отправить заявку</h2>
+                </v-btn>
               </div>
-
-              <v-btn :disabled="!canSubmit" base-color="primary" class="rounded-xl" block min-height="100"
-                @click="sendForm">
-                <h2>Отправить заявку</h2>
-              </v-btn>
-            </div>
+            </ClientOnly>
           </div>
         </v-col>
       </v-row>
