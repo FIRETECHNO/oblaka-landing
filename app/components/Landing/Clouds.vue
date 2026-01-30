@@ -22,7 +22,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: section,
           start: 'top top',       // когда секция касается верха viewport
-          end: '+=900vh',         // анимация длится 100vh скролла
+          end: '+=300vh',         // анимация длится 100vh скролла
           pin: true,              // замирает на экране
           pinSpacing: true,       // сохраняет пространство (не "прыгает" контент)
           scrub: true,            // плавная привязка к скроллу
