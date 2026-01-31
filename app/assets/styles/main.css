@@ -100,7 +100,7 @@ h2 {
   height: 80px !important;
   border-radius: 18px;
   padding-left: 50px;
-  opacity: 1 !important;
+  opacity: 0 !important;
   font-weight: 400;
   font-size: clamp(1.25rem, 0.7528rem + 1.4205vw, 1.875rem);
 }

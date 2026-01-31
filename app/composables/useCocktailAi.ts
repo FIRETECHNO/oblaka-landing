@@ -56,12 +56,18 @@ export function useCocktailAi() {
     }
   }
 
+
+  function clear() {
+    step.value = 'preview'
+    resultCocktails.value = []
+  }
+
   return {
     // constants
     strengthOptions, tasteOptions, moodOptions,
     // vars
     step, resultCocktails,
     // functions
-    nextStep, askAi
+    nextStep, askAi, clear
   }
 }

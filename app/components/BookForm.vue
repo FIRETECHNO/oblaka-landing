@@ -3,6 +3,14 @@ import flatPickr from 'vue-flatpickr-component'
 import 'flatpickr/dist/flatpickr.css'
 // Опционально: тема (можно удалить и писать свою)
 // import 'flatpickr/dist/themes/material_blue.css'
+import FlatPickr from 'vue-flatpickr-component'
+
+// Типизируем ref как "любой инстанс с полем fp"
+const datePicker = ref<{ fp?: { open: () => void; close: () => void } } | null>(null)
+
+const openDatePicker = () => {
+  datePicker.value?.fp?.open()
+}
 
 // Локаль для русского языка
 import { Russian } from 'flatpickr/dist/l10n/ru.js'
@@ -26,8 +34,6 @@ const eventTypeItems = [
   "Мальчишник",
   "Другое",
 ]
-
-import { reactive, computed, ref } from 'vue'
 
 const bookFormStore = useBookForm()
 const router = useRouter()
@@ -123,8 +129,18 @@ async function handleSubmit() {
           </template>
         </v-select>
 
-        <flat-pickr v-model="form.date" :config="dateConfig" class="custom-datepicker w-100" placeholder="Дата"
-          :error="!isDateValid && form.date !== ''" />
+        <div class="w-100 position-relative">
+          <v-text-field v-model="form.date" variant="solo-filled" bg-color="primary" placeholder="Дата" rounded
+            class="w-100" @click="openDatePicker" readonly>
+            <template v-slot:prepend-inner>
+              <div class="mr-8"></div>
+            </template>
+          </v-text-field>
+
+          <flat-pickr v-model="form.date" ref="datePicker" :config="dateConfig"
+            class="custom-datepicker position-absolute top-0" placeholder="Дата"
+            :error="!isDateValid && form.date !== ''" />
+        </div>
 
         <!-- <v-text-field v-model="form.date" variant="solo-filled" bg-color="primary" placeholder="Дата" rounded
         :error="!isDateValid && form.date !== ''"

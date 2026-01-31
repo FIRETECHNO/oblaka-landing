@@ -11,10 +11,18 @@ const dateConfig = {
   locale: Russian,
   dateFormat: 'd F Y', // отображение: "25 января 2026"
   altInput: true,      // создаёт скрытый input с ISO-датой, а показывает красивую
-  altFormat: 'm-d-Y',  // формат для v-model (если altInput: true)
+  altFormat: 'd-m-Y',  // формат для v-model (если altInput: true)
   allowInput: false,
   clickOpens: true,
   wrap: false
+}
+import FlatPickr from 'vue-flatpickr-component'
+
+// Типизируем ref как "любой инстанс с полем fp"
+const datePicker = ref<{ fp?: { open: () => void; close: () => void } } | null>(null)
+
+const openDatePicker = () => {
+  datePicker.value?.fp?.open()
 }
 
 import { useSmoothScroll } from '~/composables/useSmoothScroll'
@@ -216,11 +224,28 @@ onMounted(() => {
                   </template>
                 </v-text-field>
 
+                <div class="w-100 position-relative">
+                  <v-text-field v-model="form.date" variant="solo-filled" bg-color="primary" placeholder="Дата" rounded
+                    class="w-100" @click="openDatePicker" readonly>
+                    <template v-slot:prepend-inner>
+                      <div class="mr-8"></div>
+                    </template>
+                  </v-text-field>
+
+                  <flat-pickr v-model="form.date" ref="datePicker" :config="dateConfig"
+                    class="custom-datepicker position-absolute top-0" placeholder="Дата"
+                    :error="!isDateValid && form.date !== ''" />
+                </div>
+
                 <!-- <v-text-field v-model="form.date" variant="solo-filled" bg-color="primary" placeholder="Дата" rounded
-                class="w-100" /> -->
+                  class="w-100">
+                  <template v-slot:prepend-inner>
+                    <div class="mr-8"></div>
+                  </template>
+                </v-text-field>
 
                 <flat-pickr v-model="form.date" :config="dateConfig" class="custom-datepicker w-100" placeholder="Дата"
-                  :error="!isDateValid && form.date !== ''" />
+                  :error="!isDateValid && form.date !== ''" /> -->
 
                 <div class="d-flex align-center cursor-pointer w-100 my-2" @click="agreement = !agreement">
                   <v-checkbox v-model="agreement" hide-details="auto" class="mr-2" />

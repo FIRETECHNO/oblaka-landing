@@ -23,7 +23,7 @@ watch(display.mdAndDown, (isMdAndDown) => {
 let {
   strengthOptions, tasteOptions, moodOptions,
   step, resultCocktails,
-  nextStep, askAi
+  nextStep, askAi, clear
 } = useCocktailAi()
 
 
@@ -47,6 +47,9 @@ onMounted(() => {
   } else {
     direction.value = "horizontal"
   }
+})
+onUnmounted(() => {
+  clear()
 })
 </script>
 <template>
@@ -165,8 +168,17 @@ onMounted(() => {
     </v-col>
 
     <v-col v-else-if="step == 'result'" cols="12">
+
       <AiCocktail v-for="(cocktail, i) in resultCocktails" :cocktail="cocktail" :index="i"
         :is-last="i + 1 == resultCocktails.length" />
+
+      <v-row style="margin-top: 50px !important; margin-bottom: 50px !important;">
+        <v-col cols="12" class="d-flex justify-center">
+          <v-btn base-color="primary" class="rounded-pill" min-height="70" max-height="70" @click="clear">
+            <h2 class="px-6">Подобрать еще</h2>
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
