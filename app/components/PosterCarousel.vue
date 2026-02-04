@@ -63,8 +63,8 @@ onMounted(async () => {
 </script>
 <template>
     <div v-if="posters.length > 0" style="position: relative">
-        <div class="slider" ref="slider">
-            <div class="slide-track" :class="posters.length == 1 ? 'justify-center' : ''">
+        <div class="slider" ref="slider" :class="posters.length == 1 ? 'd-flex justify-center' : ''">
+            <div class="slide-track" :class="posters.length == 1 ? 'd-flex justify-center' : ''">
                 <v-btn icon="mdi-arrow-left" class="back-button" @click="prev"></v-btn>
 
                 <div class="slide mr-2 ml-2" v-for="(poster, index) in posters" :key="index"
